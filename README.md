@@ -15,7 +15,7 @@ Externs of howler.js - Modern Web Audio Javascript Library
 ```haxe
 haxelib install howlerjs
 ```
-<i>Please note that these externs are originally created by [INSWEATER](http://insweater.net/haxe-flavored-howler-js/). I only made slight modifications and made it available on haxelib.</i>
+<i>Please note that these externs are originally created by [INSWEATER](http://insweater.net/haxe-flavored-howler-js/). I modified a few things and made it available on haxelib.</i>
 
 ### Usage ###
 
