@@ -31,7 +31,7 @@ class Main {
 	options.onload = function() {
 		snd.play();
 	};
-	var snd = new Howl(options));
+	var snd = new Howl(options);
   }
 
   static function main() {
