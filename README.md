@@ -24,19 +24,19 @@ import howler.Howl;
 
 class Main {
 
-  public function new() {
-    var options:HowlOptions = new HowlOptions();
-	options.urls = ["sound.mp3", "sound.ogg"];
-	options.autoplay = false;
-	options.onload = function() {
-		snd.play();
-	};
-	var snd = new Howl(options);
-  }
+    public function new() {
+		var options:HowlOptions = new HowlOptions();
+		options.urls = ["sound.mp3", "sound.ogg"];
+		options.autoplay = false;
+		options.onload = function() {
+			snd.play();
+		};
+		var snd = new Howl(options);
+    }
 
-  static function main() {
-	new Main();
-  }
+    static function main() {
+		new Main();
+    }
 }
 
 ```
