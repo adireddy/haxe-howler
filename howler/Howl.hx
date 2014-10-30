@@ -2,7 +2,7 @@ package howler;
 
 @:native("window.Howl")
 extern class Howl {
-	function new(o:AudioParams):Void;
+	function new(options:HowlOptions):Void;
 
 	function load():Howl;
 
@@ -34,15 +34,15 @@ extern class Howl {
 	@:overload(function(x:Float, y:Float, z:Float, ?id:String):Howl {})
 	function pos3d(x:Float, y:Float, z:Float, ?id:String):Array<Float>;
 
-	function fade(f:Float, t:Float, len:Float, ?callBack:Void->Void, ?id:String):Howl;
+	function fade(f:Float, t:Float, len:Float, ?callBack:Void -> Void, ?id:String):Howl;
 
-	function fadeIn(t:Float, len:Float, callBack:Void->Void):Howl; // deprecated
+	function fadeIn(t:Float, len:Float, callBack:Void -> Void):Howl; // deprecated
 
-	function fadeOut(t:Float, len:Float, callBack:Void->Void, ?id:String):Howl; // deprecated
+	function fadeOut(t:Float, len:Float, callBack:Void -> Void, ?id:String):Howl; // deprecated
 
-	function on(event:String, fn:Void -> Void):Howl;
+	function on(event:String, ?fn:Void -> Void):Howl;
 
-	function off(event:String, fn:Void -> Void):Howl;
+	function off(event:String, ?fn:Void -> Void):Howl;
 
 	function unload():Void;
 
@@ -56,19 +56,11 @@ extern class Howl {
 	function refreshBuffer(obj:Howl, loop:Array<RefreshBufferLoopParams>, ?id:String):Void;
 }
 
-typedef RefreshBufferLoopParams = {
-	var loop:Bool;
-	var pos:Float;
-	var duration:Float;
-}
+typedef RefreshBufferLoopParams = { loop:Bool, pos:Float, duration:Float };
 
-typedef SpriteParams = {
-	var offset:Int;
-	var duration:Int;
-	?var loop:Bool;
-}
+typedef SpriteParams = { offset:Int, duration:Int, ?loop:Bool }
 
-class AudioParams {
+class HowlOptions {
 	public var autoplay:Bool = false;
 	public var buffer:Bool = false;
 	public var duration:Float;
@@ -87,7 +79,7 @@ class AudioParams {
 	public var onpause:Void -> Void;
 	public var onplay:Void -> Void;
 
-	public function new() {
-
+	public function new(?urls:Array<String>) {
+		if (urls != null && urls.length > 0) this.urls = urls;
 	}
 }

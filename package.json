@@ -1,7 +1,7 @@
 {
     "name": "howlerjs",
     "version": "0.0.1",
-    "description": "Externs of HowlerJS v1.1.25 for Haxe - Audio library for the modern web.",
+    "description": "Externs of howler.js - Modern Web Audio Javascript Library",
     "repository": {
     "type": "git",
     "url": "https://github.com/adireddy/haxe-howler"
