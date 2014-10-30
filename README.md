@@ -3,7 +3,7 @@ haxe-howler
 
 ![haxe howler logo](https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png)
 
-Externs of howler.js - Modern Web Audio Javascript Library.
+Externs of howler.js for Haxe - Modern Web Audio Javascript Library.
 
 ### Installation ###
 
