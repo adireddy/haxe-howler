@@ -1,4 +1,4 @@
 haxe-howler
 ===========
 
-Externs of HowlerJS v1.1.25 for Haxe
+Externs of howler.js for Haxe

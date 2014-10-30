@@ -1,0 +1,13 @@
+{
+"name": "howlerjs",
+"license": "MIT",
+"tags": ["js","haxe","howler","haxe","web","audio","sound"],
+"description": "Externs of HowlerJS v1.1.25 for Haxe - Audio library for the modern web.",
+"contributors": ["insweater","adireddy"],
+"releasenote": "initial release",
+"version": "0.0.1",
+"url": "https://github.com/adireddy/haxe-howler",
+"dependencies": {
+
+}
+}
