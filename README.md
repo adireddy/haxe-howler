@@ -1,9 +1,4 @@
 haxe-howler
-===========
-
-Externs of howler.js for Haxe
-
-haxe-howler
 =========
 
 ![haxe howler logo](https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png)
