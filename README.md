@@ -1,4 +1,4 @@
-haxe-howler
+haxe-howler ![Build Status](https://travis-ci.org/adireddy/haxe-howler.svg?branch=master)
 =========
 
 ![haxe howler logo](https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png)
