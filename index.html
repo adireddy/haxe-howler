@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>haxe-howler by adireddy</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>haxe-howler</h1>
+        <p>Externs of howler.js for Haxe</p>
+        <p class="view"><a href="https://github.com/adireddy/haxe-howler">View the Project on GitHub <small>adireddy/haxe-howler</small></a></p>
+        <ul>
+          <li><a href="https://github.com/adireddy/haxe-howler/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/adireddy/haxe-howler/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/adireddy/haxe-howler">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="haxe-howler-" class="anchor" href="#haxe-howler-" aria-hidden="true"><span class="octicon octicon-link"></span></a>haxe-howler <img src="https://travis-ci.org/adireddy/haxe-howler.svg?branch=master" alt="Build Status">
+</h1>
+
+<p><img src="https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png" alt="haxe howler logo"></p>
+
+<p>Externs of howler.js for Haxe - Modern Web Audio Javascript Library.</p>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<div class="highlight highlight-haxe"><pre>haxelib install howlerjs</pre></div>
+
+<p><i>Please note that these externs are originally created by <a href="https://github.com/insweater/HaxeHowlerJS">INSWEATER</a>. I modified a few things and made it available on haxelib.</i></p>
+
+<h3>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h3>
+
+<ul>
+<li><a href="http://www.arm.rocks/haxe-howler-demo/">Haxe Howler Demo</a></li>
+</ul>
+
+<p>Look at the demo folder for the source code of above example.</p>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<div class="highlight highlight-haxe"><pre><span class="pl-s">import</span> howler.<span class="pl-entc">Howl</span>;
+
+<span class="pl-s">class</span> <span class="pl-entc">Main</span> {
+
+    <span class="pl-s">public</span> <span class="pl-k">function</span> <span class="pl-enf">new</span>() {
+        <span class="pl-k">var</span> options:<span class="pl-entc">HowlOptions</span> <span class="pl-ko">=</span> <span class="pl-k">new</span> <span class="pl-s">HowlOptions</span>();
+        options.urls <span class="pl-ko">=</span> [<span class="pl-s1"><span class="pl-pds">"</span>sound.mp3<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>sound.ogg<span class="pl-pds">"</span></span>];
+        options.autoplay <span class="pl-ko">=</span> <span class="pl-c1">false</span>;
+        options.onload <span class="pl-ko">=</span> <span class="pl-k">function</span>() {
+            snd.play();
+        };
+        <span class="pl-k">var</span> snd <span class="pl-ko">=</span> <span class="pl-k">new</span> <span class="pl-s">Howl</span>(options);
+    }
+
+    <span class="pl-s">static</span> <span class="pl-k">function</span> <span class="pl-enf">main</span>() {
+        <span class="pl-k">new</span> <span class="pl-s">Main</span>();
+    }
+}
+</pre></div>
+
+<p>This content is released under the <a href="http://opensource.org/licenses/MIT">MIT</a> License.</p>
+
+<p><a href="https://github.com/goldfire/howler.js">howler.js</a> is written by <a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">James Simpson</a> and licensed under the <a href="http://opensource.org/licenses/MIT">MIT</a> License.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/adireddy">adireddy</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
