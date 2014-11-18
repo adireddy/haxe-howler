@@ -28,7 +28,7 @@
       </header>
       <section>
         <h1>
-<a id="haxe-howler-" class="anchor" href="#haxe-howler-" aria-hidden="true"><span class="octicon octicon-link"></span></a>haxe-howler <img src="https://travis-ci.org/adireddy/haxe-howler.svg?branch=master" alt="Build Status">
+<a id="haxe-howler--" class="anchor" href="#haxe-howler--" aria-hidden="true"><span class="octicon octicon-link"></span></a>haxe-howler <img src="https://travis-ci.org/adireddy/haxe-howler.svg?branch=master" alt="Build Status"> <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a>
 </h1>
 
 <p><img src="https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png" alt="haxe howler logo"></p>
@@ -54,22 +54,22 @@
 <h3>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
 
-<div class="highlight highlight-haxe"><pre><span class="pl-s">import</span> howler.<span class="pl-entc">Howl</span>;
+<div class="highlight highlight-haxe"><pre><span class="pl-st">import</span> <span class="pl-en">howler.</span><span class="pl-en">Howl</span>;
 
-<span class="pl-s">class</span> <span class="pl-entc">Main</span> {
+<span class="pl-st">class</span> <span class="pl-en">Main</span> {
 
-    <span class="pl-s">public</span> <span class="pl-k">function</span> <span class="pl-enf">new</span>() {
-        <span class="pl-k">var</span> options:<span class="pl-entc">HowlOptions</span> <span class="pl-ko">=</span> <span class="pl-k">new</span> <span class="pl-s">HowlOptions</span>();
-        options.urls <span class="pl-ko">=</span> [<span class="pl-s1"><span class="pl-pds">"</span>sound.mp3<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>sound.ogg<span class="pl-pds">"</span></span>];
-        options.autoplay <span class="pl-ko">=</span> <span class="pl-c1">false</span>;
-        options.onload <span class="pl-ko">=</span> <span class="pl-k">function</span>() {
+    <span class="pl-s">public</span> <span class="pl-k">function</span> <span class="pl-en">new</span>() {
+        <span class="pl-k">var</span> options:<span class="pl-en">HowlOptions</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-st">HowlOptions</span>();
+        options.urls <span class="pl-k">=</span> [<span class="pl-s1"><span class="pl-pds">"</span>sound.mp3<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>sound.ogg<span class="pl-pds">"</span></span>];
+        options.autoplay <span class="pl-k">=</span> <span class="pl-c1">false</span>;
+        options.onload <span class="pl-k">=</span> <span class="pl-k">function</span>() {
             snd.play();
         };
-        <span class="pl-k">var</span> snd <span class="pl-ko">=</span> <span class="pl-k">new</span> <span class="pl-s">Howl</span>(options);
+        <span class="pl-k">var</span> snd <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-st">Howl</span>(options);
     }
 
-    <span class="pl-s">static</span> <span class="pl-k">function</span> <span class="pl-enf">main</span>() {
-        <span class="pl-k">new</span> <span class="pl-s">Main</span>();
+    <span class="pl-s">static</span> <span class="pl-k">function</span> <span class="pl-en">main</span>() {
+        <span class="pl-k">new</span> <span class="pl-st">Main</span>();
     }
 }
 </pre></div>
