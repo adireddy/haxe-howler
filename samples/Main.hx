@@ -1,6 +1,5 @@
-package demo;
+package samples;
 
-import js.Browser;
 import pixi.display.DisplayObjectContainer;
 import pixi.Button;
 import pixi.PixiApplication;
@@ -36,7 +35,7 @@ class Main extends PixiApplication {
     }
 
     function _setupSound(url:String) {
-        var options = new HowlOptions();
+        var options:HowlOptions = {};
         options.urls = [url];
         options.autoplay = false;
         var snd = new Howl(options);

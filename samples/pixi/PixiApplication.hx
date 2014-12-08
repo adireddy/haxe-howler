@@ -41,7 +41,7 @@ class PixiApplication {
         container = new DisplayObjectContainer();
         stage.addChild(container);
 
-        var renderingOptions = new RenderingOptions();
+        var renderingOptions:RenderingOptions = {};
         renderingOptions.view = _canvas;
         renderingOptions.resolution = 2;
 

@@ -1,6 +1,5 @@
 package pixi;
 
-import pixi.text.TextStyle;
 import pixi.text.Text;
 import pixi.primitives.Graphics;
 import pixi.core.Rectangle;
@@ -53,7 +52,7 @@ class Button extends DisplayObjectContainer {
 
 	function _setupLabel(width:Float, height:Float, fontSize:Int) {
 		var size:Int = (fontSize != null) ? fontSize : Button.FONT_SIZE;
-		var style:TextStyle = new TextStyle();
+		var style:TextStyle = {};
 		style.font = (size) + "px Arial";
 		style.fill = Button.TEXT_COLOUR;
 		_label = new Text("", style);

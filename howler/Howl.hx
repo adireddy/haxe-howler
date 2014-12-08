@@ -56,30 +56,39 @@ extern class Howl {
 	function refreshBuffer(obj:Howl, loop:Array<RefreshBufferLoopParams>, ?id:String):Void;
 }
 
-typedef RefreshBufferLoopParams = { loop:Bool, pos:Float, duration:Float };
+typedef RefreshBufferLoopParams = {
+	var loop:Bool;
+	var pos:Float;
+	var duration:Float;
+}
 
-typedef SpriteParams = { offset:Int, duration:Int, ?loop:Bool }
+typedef SpriteParams = {
+	var offset:Int;
+	var duration:Int;
+	@:optional var loop:Bool;
+}
 
-class HowlOptions {
-	public var autoplay:Bool = false;
-	public var buffer:Bool = false;
-	public var duration:Float;
-	public var format:String = null;
-	public var loop:Bool = false;
-	public var sprite:Dynamic = {};
-	public var src:String;
-	public var pos3d:Array<Float>;
-	public var volume:Float = 1;
-	public var urls:Array<String> = [];
-	public var rate:Float = 1;
-	public var model:String = "equalpower";
-	public var onload:Void -> Void;
-	public var onloaderror:Void -> Void;
-	public var onend:Void -> Void;
-	public var onpause:Void -> Void;
-	public var onplay:Void -> Void;
+typedef HowlOptions = {
+	@:optional var autoplay:Bool;
+	@:optional var buffer:Bool;
+	@:optional var duration:Float;
+	@:optional var format:String;
+	@:optional var loop:Bool;
+	@:optional var sprite:Dynamic;
+	@:optional var src:String;
+	@:optional var pos3d:Array<Float>;
+	@:optional var volume:Float;
+	@:optional var urls:Array<String>;
+	@:optional var rate:Float;
 
-	public function new(?urls:Array<String>) {
-		if (urls != null && urls.length > 0) this.urls = urls;
-	}
+	// allow forcing of a specific panningModel ('equalpower' or 'HRTF'),
+	// if none is specified, defaults to 'equalpower' and switches to 'HRTF'
+	// if 3d sound is used
+	@:optional var model:String;
+
+	@:optional var onload:Void -> Void;
+	@:optional var onloaderror:Void -> Void;
+	@:optional var onend:Void -> Void;
+	@:optional var onpause:Void -> Void;
+	@:optional var onplay:Void -> Void;
 }

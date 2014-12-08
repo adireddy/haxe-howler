@@ -5,7 +5,6 @@ function $extend(from, fields) {
 	if( fields.toString !== Object.prototype.toString ) proto.toString = fields.toString;
 	return proto;
 }
-Math.__name__ = true;
 var Reflect = function() { };
 Reflect.__name__ = true;
 Reflect.isFunction = function(f) {
@@ -16,116 +15,6 @@ Reflect.compareMethods = function(f1,f2) {
 	if(!Reflect.isFunction(f1) || !Reflect.isFunction(f2)) return false;
 	return f1.scope == f2.scope && f1.method == f2.method && f1.method != null;
 };
-var pixi = {};
-pixi.PixiApplication = function() {
-	this._skipFrame = false;
-	this.backgroundColor = 16777215;
-	this.skipFrame = false;
-	this._lastTime = new Date();
-	this._setupPixi();
-};
-pixi.PixiApplication.__name__ = true;
-pixi.PixiApplication.prototype = {
-	_setupPixi: function() {
-		var _this = window.document;
-		this._canvas = _this.createElement("canvas");
-		this._canvas.style.width = "800px";
-		this._canvas.style.height = "600px";
-		window.document.body.appendChild(this._canvas);
-		this.stage = new PIXI.Stage(this.backgroundColor);
-		this.container = new PIXI.DisplayObjectContainer();
-		this.stage.addChild(this.container);
-		var renderingOptions = new pixi.utils.RenderingOptions();
-		renderingOptions.view = this._canvas;
-		renderingOptions.resolution = 2;
-		this._renderer = PIXI.autoDetectRenderer(800,600,renderingOptions);
-		window.document.body.appendChild(this._renderer.view);
-		window.onresize = $bind(this,this.__onResize);
-		window.requestAnimationFrame($bind(this,this.__onUpdate));
-		this._lastTime = new Date();
-	}
-	,set_backgroundColor: function(clr) {
-		this.stage.setBackgroundColor(clr);
-		return this.backgroundColor = clr;
-	}
-	,__onResize: function(event) {
-		if(this.resize != null) this.resize();
-	}
-	,__onUpdate: function() {
-		if(this.skipFrame && this._skipFrame) this._skipFrame = false; else {
-			this._skipFrame = true;
-			this._calculateElapsedTime();
-			if(this.update != null) this.update(this._elapsedTime);
-			this._renderer.render(this.stage);
-		}
-		window.requestAnimationFrame($bind(this,this.__onUpdate));
-	}
-	,_calculateElapsedTime: function() {
-		this._currentTime = new Date();
-		this._elapsedTime = this._currentTime.getTime() - this._lastTime.getTime();
-		this._lastTime = this._currentTime;
-	}
-};
-var demo = {};
-demo.Main = function() {
-	pixi.PixiApplication.call(this);
-	this.set_backgroundColor(6227124);
-	this._btnContainer = new PIXI.DisplayObjectContainer();
-	this.container.addChild(this._btnContainer);
-	this._bgSound = this._setupSound("assets/loop.mp3");
-	this._bgSound.loop(true);
-	this._sound1 = this._setupSound("assets/sound1.wav");
-	this._sound2 = this._setupSound("assets/sound2.wav");
-	this._addButton("LOOP SOUND",0,0,100,30,$bind(this,this._playBGSound));
-	this._addButton("SOUND 1",100,0,100,30,$bind(this,this._playSound1));
-	this._addButton("SOUND 2",200,0,100,30,$bind(this,this._playSound2));
-	this._addButton("STOP ALL",300,0,100,30,$bind(this,this._stopAll));
-	this._btnContainer.x = 200;
-	this._btnContainer.y = 285;
-};
-demo.Main.__name__ = true;
-demo.Main.main = function() {
-	new demo.Main();
-};
-demo.Main.__super__ = pixi.PixiApplication;
-demo.Main.prototype = $extend(pixi.PixiApplication.prototype,{
-	_setupSound: function(url) {
-		var options = new howler.HowlOptions();
-		options.urls = [url];
-		options.autoplay = false;
-		var snd = new window.Howl(options);
-		return snd;
-	}
-	,_playBGSound: function() {
-		this._bgSound.play();
-	}
-	,_playSound1: function() {
-		this._sound1.play();
-	}
-	,_playSound2: function() {
-		this._sound2.play();
-	}
-	,_stopAll: function() {
-		this._bgSound.stop();
-		this._sound1.stop();
-		this._sound2.stop();
-	}
-	,_addButton: function(label,x,y,width,height,callback) {
-		var button = new pixi.Button(label,width,height);
-		button.x = x;
-		button.y = y;
-		button.action.add(callback);
-		button.enable();
-		this._btnContainer.addChild(button);
-	}
-});
-var howler = {};
-howler.HowlOptions = function(urls) {
-	this.urls = [];
-	this.autoplay = false;
-	if(urls != null && urls.length > 0) this.urls = urls;
-};
-howler.HowlOptions.__name__ = true;
 var msignal = {};
 msignal.Signal = function(valueClasses) {
 	if(valueClasses == null) valueClasses = [];
@@ -281,6 +170,7 @@ msignal.SlotList.prototype = {
 		return null;
 	}
 };
+var pixi = {};
 pixi.Button = function(label,width,height,data,fontSize) {
 	PIXI.DisplayObjectContainer.call(this);
 	this.action = new msignal.Signal1(Dynamic);
@@ -311,7 +201,7 @@ pixi.Button.prototype = $extend(PIXI.DisplayObjectContainer.prototype,{
 	,_setupLabel: function(width,height,fontSize) {
 		var size;
 		if(fontSize != null) size = fontSize; else size = 12;
-		var style = new pixi.text.TextStyle();
+		var style = { };
 		style.font = size + "px Arial";
 		style.fill = "#FFFFFF";
 		this._label = new PIXI.Text("",style);
@@ -367,55 +257,114 @@ pixi.Button.prototype = $extend(PIXI.DisplayObjectContainer.prototype,{
 		this._enabled = true;
 	}
 });
-pixi.text = {};
-pixi.text.TextStyle = function(font,fill,align,stroke,strokeThickness,wordWrap,wordWrapWidth,dropShadow,dropShadowColor,dropShadowAngle,dropShadowDistance) {
-	this.dropShadowDistance = 5;
-	this.dropShadowAngle = Math.PI / 4;
-	this.dropShadowColor = "#000000";
-	this.dropShadow = false;
-	this.wordWrapWidth = 100;
-	this.wordWrap = false;
-	this.strokeThickness = 0;
-	this.align = "left";
-	this.fill = "#000000";
-	this.font = "bold 20px Arial";
-	if(font != null) this.font = font;
-	if(fill != null) this.fill = fill;
-	if(align != null) this.align = align;
-	if(stroke != null) this.stroke = stroke;
-	if(strokeThickness != null) this.strokeThickness = strokeThickness;
-	if(wordWrap != null) this.wordWrap = wordWrap;
-	if(wordWrapWidth != null) this.wordWrapWidth = wordWrapWidth;
-	if(dropShadow != null) this.dropShadow = dropShadow;
-	if(dropShadowColor != null) this.dropShadowColor = dropShadowColor;
-	if(dropShadowAngle != null) this.dropShadowAngle = dropShadowAngle;
-	if(dropShadowDistance != null) this.dropShadowDistance = dropShadowDistance;
+pixi.PixiApplication = function() {
+	this._skipFrame = false;
+	this.backgroundColor = 16777215;
+	this.skipFrame = false;
+	this._lastTime = new Date();
+	this._setupPixi();
 };
-pixi.text.TextStyle.__name__ = true;
-pixi.utils = {};
-pixi.utils.RenderingOptions = function(view,resolution,transparent) {
-	this.resolution = 1;
-	this.transparent = false;
-	if(view != null) this.view = view;
-	if(resolution != null) this.resolution = resolution;
-	if(transparent != null) this.transparent = transparent;
+pixi.PixiApplication.__name__ = true;
+pixi.PixiApplication.prototype = {
+	_setupPixi: function() {
+		var _this = window.document;
+		this._canvas = _this.createElement("canvas");
+		this._canvas.style.width = "800px";
+		this._canvas.style.height = "600px";
+		window.document.body.appendChild(this._canvas);
+		this.stage = new PIXI.Stage(this.backgroundColor);
+		this.container = new PIXI.DisplayObjectContainer();
+		this.stage.addChild(this.container);
+		var renderingOptions = { };
+		renderingOptions.view = this._canvas;
+		renderingOptions.resolution = 2;
+		this._renderer = PIXI.autoDetectRenderer(800,600,renderingOptions);
+		window.document.body.appendChild(this._renderer.view);
+		window.onresize = $bind(this,this.__onResize);
+		window.requestAnimationFrame($bind(this,this.__onUpdate));
+		this._lastTime = new Date();
+	}
+	,set_backgroundColor: function(clr) {
+		this.stage.setBackgroundColor(clr);
+		return this.backgroundColor = clr;
+	}
+	,__onResize: function(event) {
+		if(this.resize != null) this.resize();
+	}
+	,__onUpdate: function() {
+		if(this.skipFrame && this._skipFrame) this._skipFrame = false; else {
+			this._skipFrame = true;
+			this._calculateElapsedTime();
+			if(this.update != null) this.update(this._elapsedTime);
+			this._renderer.render(this.stage);
+		}
+		window.requestAnimationFrame($bind(this,this.__onUpdate));
+	}
+	,_calculateElapsedTime: function() {
+		this._currentTime = new Date();
+		this._elapsedTime = this._currentTime.getTime() - this._lastTime.getTime();
+		this._lastTime = this._currentTime;
+	}
 };
-pixi.utils.RenderingOptions.__name__ = true;
+var samples = {};
+samples.Main = function() {
+	pixi.PixiApplication.call(this);
+	this.set_backgroundColor(6227124);
+	this._btnContainer = new PIXI.DisplayObjectContainer();
+	this.container.addChild(this._btnContainer);
+	this._bgSound = this._setupSound("assets/loop.mp3");
+	this._bgSound.loop(true);
+	this._sound1 = this._setupSound("assets/sound1.wav");
+	this._sound2 = this._setupSound("assets/sound2.wav");
+	this._addButton("LOOP SOUND",0,0,100,30,$bind(this,this._playBGSound));
+	this._addButton("SOUND 1",100,0,100,30,$bind(this,this._playSound1));
+	this._addButton("SOUND 2",200,0,100,30,$bind(this,this._playSound2));
+	this._addButton("STOP ALL",300,0,100,30,$bind(this,this._stopAll));
+	this._btnContainer.x = 200;
+	this._btnContainer.y = 285;
+};
+samples.Main.__name__ = true;
+samples.Main.main = function() {
+	new samples.Main();
+};
+samples.Main.__super__ = pixi.PixiApplication;
+samples.Main.prototype = $extend(pixi.PixiApplication.prototype,{
+	_setupSound: function(url) {
+		var options = { };
+		options.urls = [url];
+		options.autoplay = false;
+		var snd = new window.Howl(options);
+		return snd;
+	}
+	,_playBGSound: function() {
+		this._bgSound.play();
+	}
+	,_playSound1: function() {
+		this._sound1.play();
+	}
+	,_playSound2: function() {
+		this._sound2.play();
+	}
+	,_stopAll: function() {
+		this._bgSound.stop();
+		this._sound1.stop();
+		this._sound2.stop();
+	}
+	,_addButton: function(label,x,y,width,height,callback) {
+		var button = new pixi.Button(label,width,height);
+		button.x = x;
+		button.y = y;
+		button.action.add(callback);
+		button.enable();
+		this._btnContainer.addChild(button);
+	}
+});
 var $_, $fid = 0;
 function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $fid++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = function(){ return f.method.apply(f.scope, arguments); }; f.scope = o; f.method = m; o.hx__closures__[m.__id__] = f; } return f; }
-Math.NaN = Number.NaN;
-Math.NEGATIVE_INFINITY = Number.NEGATIVE_INFINITY;
-Math.POSITIVE_INFINITY = Number.POSITIVE_INFINITY;
-Math.isFinite = function(i) {
-	return isFinite(i);
-};
-Math.isNaN = function(i1) {
-	return isNaN(i1);
-};
 String.__name__ = true;
 Array.__name__ = true;
 Date.__name__ = ["Date"];
 var Dynamic = { __name__ : ["Dynamic"]};
 msignal.SlotList.NIL = new msignal.SlotList(null,null);
-demo.Main.main();
+samples.Main.main();
 })();

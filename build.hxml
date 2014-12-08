@@ -1,7 +1,7 @@
--cp demo
+-cp samples
 -cp src
--main demo.Main
--js demo/_output/howler-demo.js
+-main samples.Main
+-js samples/_output/howler-demo.js
 
 -lib pixijs
 -lib msignal
