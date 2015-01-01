@@ -1,8 +1,8 @@
 package pixi;
 
+import pixi.geom.Rectangle;
 import pixi.text.Text;
 import pixi.primitives.Graphics;
-import pixi.core.Rectangle;
 import msignal.Signal.Signal1;
 import pixi.display.DisplayObjectContainer;
 
