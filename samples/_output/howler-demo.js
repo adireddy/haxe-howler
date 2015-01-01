@@ -306,6 +306,9 @@ pixi.PixiApplication.prototype = {
 		this._lastTime = this._currentTime;
 	}
 };
+pixi.renderers = {};
+pixi.renderers.IRenderer = function() { };
+pixi.renderers.IRenderer.__name__ = true;
 var samples = {};
 samples.Main = function() {
 	pixi.PixiApplication.call(this);
