@@ -16,7 +16,7 @@ haxelib install howlerjs
 
 * [Haxe Howler Demo](http://adireddy.github.io/demos/haxe-howler/)
 
-Look at the demo folder for the source code of above example.
+Look at the samples folder for the source code of above example.
 
 ### Usage ###
 
