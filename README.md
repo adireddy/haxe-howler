@@ -26,7 +26,7 @@ import howler.Howl;
 class Main {
 
     public function new() {
-		var options:HowlOptions = new HowlOptions();
+		var options:HowlOptions = {};
 		options.urls = ["sound.mp3", "sound.ogg"];
 		options.autoplay = false;
 		options.onload = function() {
