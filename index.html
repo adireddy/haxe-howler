@@ -1,33 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
     <title>haxe-howler by adireddy</title>
-  </head>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+  </head>
   <body>
 
-    <header>
-      <div class="container">
+      <header>
         <h1>haxe-howler</h1>
-        <h2>Externs of howler.js for Haxe</h2>
+        <p>Externs of howler.js for Haxe</p>
+      </header>
 
-        <section id="downloads">
-          <a href="https://github.com/adireddy/haxe-howler/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/adireddy/haxe-howler/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/adireddy/haxe-howler" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+      <div id="banner">
+        <span id="logo"></span>
 
-    <div class="container">
-      <section id="main_content">
+        <a href="https://github.com/adireddy/haxe-howler" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/adireddy/haxe-howler/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/adireddy/haxe-howler/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
         <h1>
 <a id="haxe-howler--" class="anchor" href="#haxe-howler--" aria-hidden="true"><span class="octicon octicon-link"></span></a>haxe-howler <img src="https://travis-ci.org/adireddy/haxe-howler.svg?branch=master" alt="Build Status"> <a href="http://gruntjs.com/"><img src="https://cdn.gruntjs.com/builtwith.png" alt="Built with Grunt"></a>
 </h1>
@@ -50,27 +61,27 @@
 <li><a href="http://adireddy.github.io/demos/haxe-howler/">Haxe Howler Demo</a></li>
 </ul>
 
-<p>Look at the demo folder for the source code of above example.</p>
+<p>Look at the <code>samples</code> folder for the source code of above example.</p>
 
 <h3>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
 
-<div class="highlight highlight-haxe"><pre><span class="pl-st">import</span> <span class="pl-en">howler.</span><span class="pl-en">Howl</span>;
+<div class="highlight highlight-haxe"><pre><span class="pl-st">import</span> <span class="pl-s3">howler.</span><span class="pl-s3">Howl</span>;
 
 <span class="pl-st">class</span> <span class="pl-en">Main</span> {
 
-    <span class="pl-s">public</span> <span class="pl-k">function</span> <span class="pl-en">new</span>() {
-        <span class="pl-k">var</span> options:<span class="pl-en">HowlOptions</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-st">HowlOptions</span>();
+    <span class="pl-s">public</span> <span class="pl-st">function</span> <span class="pl-en">new</span>() {
+        <span class="pl-st">var</span> options:<span class="pl-s3">HowlOptions</span> <span class="pl-k">=</span> {};
         options.urls <span class="pl-k">=</span> [<span class="pl-s1"><span class="pl-pds">"</span>sound.mp3<span class="pl-pds">"</span></span>, <span class="pl-s1"><span class="pl-pds">"</span>sound.ogg<span class="pl-pds">"</span></span>];
         options.autoplay <span class="pl-k">=</span> <span class="pl-c1">false</span>;
-        options.onload <span class="pl-k">=</span> <span class="pl-k">function</span>() {
+        options.onload <span class="pl-k">=</span> <span class="pl-st">function</span>() {
             snd.play();
         };
-        <span class="pl-k">var</span> snd <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-st">Howl</span>(options);
+        <span class="pl-st">var</span> snd <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-s3">Howl</span>(options);
     }
 
-    <span class="pl-s">static</span> <span class="pl-k">function</span> <span class="pl-en">main</span>() {
-        <span class="pl-k">new</span> <span class="pl-st">Main</span>();
+    <span class="pl-s">static</span> <span class="pl-st">function</span> <span class="pl-en">main</span>() {
+        <span class="pl-k">new</span> <span class="pl-s3">Main</span>();
     }
 }
 </pre></div>
@@ -85,8 +96,12 @@
 
 <p><a href="https://github.com/goldfire/howler.js">howler.js</a> is written by <a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">James Simpson</a> and licensed under the <a href="http://opensource.org/licenses/MIT">MIT</a> License.</p>
       </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/adireddy">adireddy</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
     </div>
-
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
