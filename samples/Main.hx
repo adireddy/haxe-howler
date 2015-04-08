@@ -22,15 +22,15 @@ class Main extends PixiApplication {
 
         _bgSound = _setupSound("assets/loop.mp3");
         _bgSound.loop(true);
+        _bgSound.play();
         _sound1 = _setupSound("assets/sound1.wav");
         _sound2 = _setupSound("assets/sound2.wav");
 
-        _addButton("LOOP SOUND", 0, 0, 100, 30, _playBGSound);
         _addButton("SOUND 1", 100, 0, 100, 30, _playSound1);
         _addButton("SOUND 2", 200, 0, 100, 30, _playSound2);
         _addButton("STOP ALL", 300, 0, 100, 30, _stopAll);
 
-        _btnContainer.x = 200;
+        _btnContainer.x = 150;
         _btnContainer.y = 285;
     }
 
@@ -40,10 +40,6 @@ class Main extends PixiApplication {
         options.autoplay = false;
         var snd = new Howl(options);
         return snd;
-    }
-
-    function _playBGSound() {
-        _bgSound.play();
     }
 
     function _playSound1() {
