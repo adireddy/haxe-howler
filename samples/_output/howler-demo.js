@@ -171,8 +171,33 @@ msignal.SlotList.prototype = {
 	}
 };
 var pixi = {};
-pixi.Button = function(label,width,height,data,fontSize) {
+pixi.display = {};
+pixi.display.DisplayObject = function() {
+	PIXI.DisplayObject.call(this);
+	this.name = "";
+};
+pixi.display.DisplayObject.__name__ = true;
+pixi.display.DisplayObject.__super__ = PIXI.DisplayObject;
+pixi.display.DisplayObject.prototype = $extend(PIXI.DisplayObject.prototype,{
+});
+pixi.display.DisplayObjectContainer = function() {
 	PIXI.DisplayObjectContainer.call(this);
+};
+pixi.display.DisplayObjectContainer.__name__ = true;
+pixi.display.DisplayObjectContainer.__super__ = PIXI.DisplayObjectContainer;
+pixi.display.DisplayObjectContainer.prototype = $extend(PIXI.DisplayObjectContainer.prototype,{
+	getChildByName: function(name) {
+		var _g1 = 0;
+		var _g = this.children.length;
+		while(_g1 < _g) {
+			var i = _g1++;
+			if(this.children[i].name == name) return this.children[i];
+		}
+		return null;
+	}
+});
+pixi.Button = function(label,width,height,data,fontSize) {
+	pixi.display.DisplayObjectContainer.call(this);
 	this.action = new msignal.Signal1(Dynamic);
 	this._data = data;
 	this._setupBackground(width,height);
@@ -180,8 +205,8 @@ pixi.Button = function(label,width,height,data,fontSize) {
 	this.setText(label);
 };
 pixi.Button.__name__ = true;
-pixi.Button.__super__ = PIXI.DisplayObjectContainer;
-pixi.Button.prototype = $extend(PIXI.DisplayObjectContainer.prototype,{
+pixi.Button.__super__ = pixi.display.DisplayObjectContainer;
+pixi.Button.prototype = $extend(pixi.display.DisplayObjectContainer.prototype,{
 	_setupBackground: function(width,height) {
 		this._rect = new PIXI.Rectangle(0,0,width,height);
 		this._background = new PIXI.Graphics();
@@ -273,7 +298,7 @@ pixi.PixiApplication.prototype = {
 		this._canvas.style.height = "600px";
 		window.document.body.appendChild(this._canvas);
 		this.stage = new PIXI.Stage(this.backgroundColor);
-		this.container = new PIXI.DisplayObjectContainer();
+		this.container = new pixi.display.DisplayObjectContainer();
 		this.stage.addChild(this.container);
 		var renderingOptions = { };
 		renderingOptions.view = this._canvas;
@@ -313,17 +338,17 @@ var samples = {};
 samples.Main = function() {
 	pixi.PixiApplication.call(this);
 	this.set_backgroundColor(6227124);
-	this._btnContainer = new PIXI.DisplayObjectContainer();
+	this._btnContainer = new pixi.display.DisplayObjectContainer();
 	this.container.addChild(this._btnContainer);
 	this._bgSound = this._setupSound("assets/loop.mp3");
 	this._bgSound.loop(true);
+	this._bgSound.play();
 	this._sound1 = this._setupSound("assets/sound1.wav");
 	this._sound2 = this._setupSound("assets/sound2.wav");
-	this._addButton("LOOP SOUND",0,0,100,30,$bind(this,this._playBGSound));
 	this._addButton("SOUND 1",100,0,100,30,$bind(this,this._playSound1));
 	this._addButton("SOUND 2",200,0,100,30,$bind(this,this._playSound2));
 	this._addButton("STOP ALL",300,0,100,30,$bind(this,this._stopAll));
-	this._btnContainer.x = 200;
+	this._btnContainer.x = 150;
 	this._btnContainer.y = 285;
 };
 samples.Main.__name__ = true;
@@ -338,9 +363,6 @@ samples.Main.prototype = $extend(pixi.PixiApplication.prototype,{
 		options.autoplay = false;
 		var snd = new window.Howl(options);
 		return snd;
-	}
-	,_playBGSound: function() {
-		this._bgSound.play();
 	}
 	,_playSound1: function() {
 		this._sound1.play();
