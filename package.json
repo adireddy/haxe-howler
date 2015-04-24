@@ -1,6 +1,6 @@
 {
   "name": "howlerjs",
-  "version": "1.1.25",
+  "version": "2.0.0-beta.1",
   "description": "Externs of howler.js - Modern Web Audio Javascript Library",
   "repository": {
     "type": "git",
