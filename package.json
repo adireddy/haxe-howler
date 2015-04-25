@@ -1,6 +1,6 @@
 {
   "name": "howlerjs",
-  "version": "1.1.25",
+  "version": "2.0.0-beta",
   "description": "Externs of howler.js - Modern Web Audio Javascript Library",
   "repository": {
     "type": "git",
@@ -26,8 +26,10 @@
   "license": "MIT",
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-contrib-copy": "^0.8.0",
     "grunt-exec": "^0.4.6",
     "grunt-haxe": "^0.1.12",
+    "grunt-npm-install": "^0.2.0",
     "grunt-shell": "^1.1.1",
     "grunt-zip": "^0.16.0"
   }

@@ -1,5 +1,5 @@
 /**
- * Created by Adi Mora on 05/11/2014.
+ * Created by Adi Mora on 25/04/2015.
  */
 module.exports = function (grunt) {
 
@@ -16,13 +16,19 @@ module.exports = function (grunt) {
             "howler.zip": ["howler/**", "haxelib.json"]
         },
 
-        exec: {
-            copy: "cp -R samples/_output/** ../adireddy.github.io/demos/haxe-howler/"
+        copy: {
+            default: {
+                files: [
+                    {expand: true, src: ["samples/_output/**"], dest: "../adireddy.github.io/demos/haxe-howler/"},
+                ]
+            }
         }
     });
 
     grunt.loadNpmTasks("grunt-haxe");
     grunt.loadNpmTasks("grunt-zip");
     grunt.loadNpmTasks("grunt-exec");
+    grunt.loadNpmTasks("grunt-npm-install");
+    grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.registerTask("default", ["haxe", "zip", "exec"]);
 };

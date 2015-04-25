@@ -1,16 +1,52 @@
 package howler;
 
-@:native("window.Howler")
+@:native("Howler")
 extern class Howler {
-	static var ctx:js.html.audio.AudioContext;
+
+	/**
+     * Initialize the global Howler object.
+     * @return {Howler}
+     */
+	static function init():Howler;
+
+	/**
+     * Set to false to disable the auto iOS enabler.
+     */
+	static var iOSAutoEnable:Bool;
+
+	/**
+     * No audio is available on this system if this is set to true.
+     */
+	static var noAudio:Bool;
+
+	/**
+     * This will be true if the Web Audio API is available.
+     */
 	static var usingWebAudio:Bool;
 
+	/**
+     * Expose the AudioContext when using Web Audio.
+     */
+	static var ctx:js.html.audio.AudioContext;
+
+	/**
+     * Check for codec support of specific extension.
+     * @param  {String} ext Audio file extention.
+     * @return {Boolean}
+     */
 	static function codecs(ext:String):Bool;
 
+	/**
+     * Get/set the global volume for all sounds.
+     * @param  {Float} vol Volume from 0.0 to 1.0.
+     * @return {Howler/Float} Returns self or current volume.
+     */
 	@:overload(function(vol:Float):Howler {})
 	static function volume(vol:Float):Float;
 
-	static function mute():Howler;
-
-	static function unmute():Howler;
+	/**
+     * Handle muting and unmuting globally.
+     * @param {Boolean} muted Is muted or not.
+     */
+	static function mute(muted:Bool):Howler;
 }

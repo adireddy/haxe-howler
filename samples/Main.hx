@@ -21,7 +21,7 @@ class Main extends PixiApplication {
         container.addChild(_btnContainer);
 
         _bgSound = _setupSound("assets/loop.mp3");
-        _bgSound.loop(true);
+        _bgSound.loop();
         _bgSound.play();
         _sound1 = _setupSound("assets/sound1.wav");
         _sound2 = _setupSound("assets/sound2.wav");
@@ -36,9 +36,9 @@ class Main extends PixiApplication {
 
     function _setupSound(url:String) {
         var options:HowlOptions = {};
-        options.urls = [url];
+        options.src = [url];
         options.autoplay = false;
-        var snd = new Howl(options);
+        var snd:Howl = new Howl(options);
         return snd;
     }
 
