@@ -1,4 +1,4 @@
-[![Haxelib Version](https://img.shields.io/github/tag/howlerjs/haxe-howler.svg?style=flat&label=haxelib)](http://lib.haxe.org/p/howlerjs) ![Build Status](https://travis-ci.org/adireddy/haxe-howler.svg?branch=master) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+![Build Status](https://travis-ci.org/adireddy/haxe-howler.svg?branch=master) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 =========
 
 ![haxe howler logo](https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png)
