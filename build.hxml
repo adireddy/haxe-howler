@@ -3,9 +3,9 @@
 -main samples.Main
 -js samples/_output/howler-demo.js
 
--lib pixijs:2.3.1
+-lib pixijs
 -lib msignal
-
+-debug
 -D source-map-content
 
 -dce full
