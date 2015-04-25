@@ -19,7 +19,7 @@ module.exports = function (grunt) {
         copy: {
             default: {
                 files: [
-                    {expand: true, src: ["samples/_output/**"], dest: "../adireddy.github.io/demos/haxe-howler/"},
+                    {expand: true, cwd: "samples/_output/", src: ["**"], dest: "../adireddy.github.io/demos/haxe-howler/"},
                 ]
             }
         }
@@ -30,5 +30,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-exec");
     grunt.loadNpmTasks("grunt-npm-install");
     grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.registerTask("default", ["haxe", "zip", "exec"]);
+    grunt.registerTask("default", ["haxe", "zip", "copy"]);
 };
