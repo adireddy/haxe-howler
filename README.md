@@ -8,9 +8,8 @@ Externs of howler.js for Haxe - Modern Web Audio Javascript Library.
 ### Installation ###
 
 ```haxe
-haxelib install howlerjs
+haxelib install howlerjs 2.0.0-beta
 ```
-<i>Please note that these externs are originally created by [INSWEATER](https://github.com/insweater/HaxeHowlerJS). I modified a few things and made it available on haxelib.</i>
 
 ### Demo ###
 
@@ -27,12 +26,11 @@ class Main {
 
     public function new() {
 		var options:HowlOptions = {};
-		options.urls = ["sound.mp3", "sound.ogg"];
+		options.src = ["sound.mp3", "sound.ogg"];
 		options.autoplay = false;
-		options.onload = function() {
-			snd.play();
-		};
-		var snd = new Howl(options);
+		options.loop = true;
+		var snd:Howl = new Howl(options);
+		snd.play();
     }
 
     static function main() {
