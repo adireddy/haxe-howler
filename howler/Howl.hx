@@ -114,7 +114,8 @@ extern class Howl {
      * @param {Int} id (optional) Only listen to events for this sound.
      * @return {Howl}
      */
-	function on(event:String, fn:Dynamic, ?id:Int):Howl;
+	@:overload(function(event:String, fn:Int -> Void, ?id:Int):Howl {})
+	function on(event:String, fn:Void -> Void, ?id:Int):Howl;
 
 	/**
      * Remove a custom event.
@@ -123,7 +124,8 @@ extern class Howl {
      * @param {Number} id (optional) Only remove events for this sound.
      * @return {Howl}
      */
-	function off(event:String, ?fn:Dynamic, ?id:Int):Howl;
+	@:overload(function(event:String, fn:Int -> Void, ?id:Int):Howl {})
+	function off(event:String, ?fn:Void -> Void, ?id:Int):Howl;
 
 	/**
      * Listen to a custom event and remove it once fired.
@@ -132,7 +134,8 @@ extern class Howl {
      * @param {Int} id (optional) Only listen to events for this sound.
      * @return {Howl}
      */
-	function once(event:String, fn:Dynamic, ?id:Int):Howl;
+	@:overload(function(event:String, fn:Int -> Void, ?id:Int):Howl {})
+	function once(event:String, fn:Void -> Void, ?id:Int):Howl;
 }
 
 typedef HowlOptions = {
@@ -141,12 +144,12 @@ typedef HowlOptions = {
 	 */
 	@:optional var autoplay:Bool;
 	/**
-	 * howler.js automatically detects your file format from the extension, but you may also 
+	 * howler.js automatically detects your file format from the extension, but you may also
 	 * specify a format in situations where extraction won't work (such as with a SoundCloud stream).
 	 */
 	@:optional var ext:Array<String>;
 	/**
-	 * Set to true to force HTML5 Audio. This should be used for large audio files 
+	 * Set to true to force HTML5 Audio. This should be used for large audio files
 	 * so that you don't have to wait for the full file to be downloaded and decoded before playing.
 	 */
 	@:optional var html5:Bool;
@@ -159,10 +162,10 @@ typedef HowlOptions = {
 	 */
 	@:optional var loop:Bool;
 	/**
-	 * The size of the inactive sounds pool. Once sounds are stopped or finish playing, they are 
-	 * marked as ended and ready for cleanup. We keep a pool of these to recycle for improved 
-	 * performance. Generally this doesn't need to be changed. It is important to keep in mind 
-	 * that when a sound is paused, it won't be removed from the pool and will still be considered 
+	 * The size of the inactive sounds pool. Once sounds are stopped or finish playing, they are
+	 * marked as ended and ready for cleanup. We keep a pool of these to recycle for improved
+	 * performance. Generally this doesn't need to be changed. It is important to keep in mind
+	 * that when a sound is paused, it won't be removed from the pool and will still be considered
 	 * active so that it can be resumed later.
 	 */
 	@:optional var pool:Int;
@@ -175,7 +178,7 @@ typedef HowlOptions = {
 	 */
 	@:optional var rate:Float;
 	/**
-	 * Define a sound sprite for the sound. The offset and duration are defined in milliseconds. 
+	 * Define a sound sprite for the sound. The offset and duration are defined in milliseconds.
 	 * A third (optional) parameter is available to set a sprite as looping.
 	 *	{
 	 *	  key: [offset, duration, (loop)]
@@ -183,9 +186,9 @@ typedef HowlOptions = {
 	 */
 	@:optional var sprite:Dynamic;
 	/**
-	 * The sources to the track(s) to be loaded for the sound (URLs or base64 data URIs). 
+	 * The sources to the track(s) to be loaded for the sound (URLs or base64 data URIs).
 	 * These should be in order of preference, howler.js will automatically load the first
-	 * one that is compatible with the current browser. If your files have no extensions, 
+	 * one that is compatible with the current browser. If your files have no extensions,
 	 * you will need to explicitly specify the extension using the ext property.
 	 */
 	@:optional var src:Array<String>;
@@ -196,29 +199,29 @@ typedef HowlOptions = {
 	/**
 	 * Fires when the sound is loaded.
 	 */
-	@:optional var onload:Void->Void;
+	@:optional var onload:Void -> Void;
 	/**
 	 * Fires when the sound is unable to load.
 	 */
-	@:optional var onloaderror:Void->Void;
+	@:optional var onloaderror:Void -> Void;
 	/**
-	 * Fires when the sound finishes playing (if it is looping, it'll fire at the end of each loop). 
+	 * Fires when the sound finishes playing (if it is looping, it'll fire at the end of each loop).
 	 * The first parameter is the ID of the sound.
 	 */
-	@:optional var onend:Int->Void;
+	@:optional var onend:Int -> Void;
 	/**
-	 * Fires when the sound has been paused. 
+	 * Fires when the sound has been paused.
 	 * The first parameter is the ID of the sound.
 	 */
-	@:optional var onpause:Int->Void;
+	@:optional var onpause:Int -> Void;
 	/**
 	 * Fires when the sound begins playing.
 	 * The first parameter is the ID of the sound.
 	 */
-	@:optional var onplay:Int->Void;
+	@:optional var onplay:Int -> Void;
 	/**
-	 * Fires when the current sound finishes fading in/out. 
+	 * Fires when the current sound finishes fading in/out.
 	 * The first parameter is the ID of the sound.
 	 */
-	@:optional var onfaded:Int->Void;
+	@:optional var onfaded:Int -> Void;
 }
