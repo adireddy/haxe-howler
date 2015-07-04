@@ -30,11 +30,11 @@ class Main extends Application {
 
 		_bgSound.play();
 
-		_addButton("SOUND 1", 100, 0, 100, 30, _playSound1);
-		_addButton("SOUND 2", 200, 0, 100, 30, _playSound2);
-		_addButton("STOP ALL", 320, 0, 100, 30, _stopAll);
+		_addButton("SOUND 1", 0, 0, 100, 30, _playSound1);
+		_addButton("SOUND 2", 100, 0, 100, 30, _playSound2);
+		_addButton("STOP ALL", 220, 0, 100, 30, _stopAll);
 
-		_btnContainer.position.set((Browser.window.innerWidth - 300 * pixelRatio) / 2, (Browser.window.innerHeight - 30 * pixelRatio) / 2);
+		_btnContainer.position.set((Browser.window.innerWidth - 320) / 2, (Browser.window.innerHeight - 30) / 2);
 	}
 
 	function _setupSound(url:String, ?loop:Bool = false) {
