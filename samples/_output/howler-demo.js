@@ -284,31 +284,33 @@ pixi_plugins_app_Application.prototype = {
 		this.transparent = false;
 		this.antialias = false;
 		this.forceFXAA = false;
+		this.roundPixels = false;
 		this.backgroundColor = 16777215;
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 		this.set_fps(60);
 	}
-	,start: function(renderer,stats,parentDom) {
+	,start: function(rendererType,stats,parentDom) {
 		if(stats == null) stats = true;
-		if(renderer == null) renderer = "auto";
+		if(rendererType == null) rendererType = "auto";
 		var _this = window.document;
-		this._canvas = _this.createElement("canvas");
-		this._canvas.style.width = this.width + "px";
-		this._canvas.style.height = this.height + "px";
-		this._canvas.style.position = "absolute";
-		if(parentDom == null) window.document.body.appendChild(this._canvas); else parentDom.appendChild(this._canvas);
-		this._stage = new PIXI.Container();
+		this.canvas = _this.createElement("canvas");
+		this.canvas.style.width = this.width + "px";
+		this.canvas.style.height = this.height + "px";
+		this.canvas.style.position = "absolute";
+		if(parentDom == null) window.document.body.appendChild(this.canvas); else parentDom.appendChild(this.canvas);
+		this.stage = new PIXI.Container();
 		var renderingOptions = { };
-		renderingOptions.view = this._canvas;
+		renderingOptions.view = this.canvas;
 		renderingOptions.backgroundColor = this.backgroundColor;
 		renderingOptions.resolution = this.pixelRatio;
 		renderingOptions.antialias = this.antialias;
 		renderingOptions.forceFXAA = this.forceFXAA;
 		renderingOptions.autoResize = this.autoResize;
 		renderingOptions.transparent = this.transparent;
-		if(renderer == "auto") this._renderer = PIXI.autoDetectRenderer(this.width,this.height,renderingOptions); else if(renderer == "canvas") this._renderer = new PIXI.CanvasRenderer(this.width,this.height,renderingOptions); else this._renderer = new PIXI.WebGLRenderer(this.width,this.height,renderingOptions);
-		window.document.body.appendChild(this._renderer.view);
+		if(rendererType == "auto") this.renderer = PIXI.autoDetectRenderer(this.width,this.height,renderingOptions); else if(rendererType == "canvas") this.renderer = new PIXI.CanvasRenderer(this.width,this.height,renderingOptions); else this.renderer = new PIXI.WebGLRenderer(this.width,this.height,renderingOptions);
+		if(this.roundPixels) this.renderer.roundPixels = true;
+		window.document.body.appendChild(this.renderer.view);
 		if(this.autoResize) window.onresize = $bind(this,this._onWindowResize);
 		window.requestAnimationFrame($bind(this,this._onRequestAnimationFrame));
 		this._lastTime = new Date();
@@ -317,9 +319,9 @@ pixi_plugins_app_Application.prototype = {
 	,_onWindowResize: function(event) {
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
-		this._renderer.resize(this.width,this.height);
-		this._canvas.style.width = this.width + "px";
-		this._canvas.style.height = this.height + "px";
+		this.renderer.resize(this.width,this.height);
+		this.canvas.style.width = this.width + "px";
+		this.canvas.style.height = this.height + "px";
 		if(this._stats != null) {
 			this._stats.domElement.style.top = "2px";
 			this._stats.domElement.style.right = "2px";
@@ -332,7 +334,7 @@ pixi_plugins_app_Application.prototype = {
 			this._frameCount = 0;
 			this._calculateElapsedTime();
 			if(this.onUpdate != null) this.onUpdate(this._elapsedTime);
-			this._renderer.render(this._stage);
+			this.renderer.render(this.stage);
 		}
 		window.requestAnimationFrame($bind(this,this._onRequestAnimationFrame));
 		if(this._stats != null) this._stats.update();
@@ -344,14 +346,33 @@ pixi_plugins_app_Application.prototype = {
 	}
 	,_addStats: function() {
 		if(window.Stats != null) {
-			var _container = window.document.createElement("div");
-			window.document.body.appendChild(_container);
+			var container;
+			var _this = window.document;
+			container = _this.createElement("div");
+			window.document.body.appendChild(container);
 			this._stats = new Stats();
 			this._stats.domElement.style.position = "absolute";
 			this._stats.domElement.style.top = "2px";
 			this._stats.domElement.style.right = "2px";
-			_container.appendChild(this._stats.domElement);
+			container.appendChild(this._stats.domElement);
 			this._stats.begin();
+			var counter;
+			var _this1 = window.document;
+			counter = _this1.createElement("div");
+			counter.style.position = "absolute";
+			counter.style.top = "50px";
+			counter.style.right = "2px";
+			counter.style.width = "76px";
+			counter.style.background = "#CCCCC";
+			counter.style.backgroundColor = "#105CB6";
+			counter.style.fontFamily = "Helvetica,Arial";
+			counter.style.padding = "2px";
+			counter.style.color = "#0FF";
+			counter.style.fontSize = "9px";
+			counter.style.fontWeight = "bold";
+			counter.style.textAlign = "center";
+			window.document.body.appendChild(counter);
+			counter.innerHTML = ["Unknown","WebGL","Canvas"][this.renderer.type] + " - " + this.pixelRatio;
 		}
 	}
 };
@@ -361,7 +382,7 @@ var samples_Main = function() {
 	this.backgroundColor = 6227124;
 	pixi_plugins_app_Application.prototype.start.call(this);
 	this._btnContainer = new PIXI.Container();
-	this._stage.addChild(this._btnContainer);
+	this.stage.addChild(this._btnContainer);
 	this._bgSound = this._setupSound("assets/loop.mp3",true);
 	this._sound1 = this._setupSound("assets/sound1.wav");
 	this._sound2 = this._setupSound("assets/sound2.wav");

@@ -22,7 +22,7 @@ class Main extends Application {
 		super.start();
 
 		_btnContainer = new Container();
-		_stage.addChild(_btnContainer);
+		stage.addChild(_btnContainer);
 
 		_bgSound = _setupSound("assets/loop.mp3", true);
 		_sound1 = _setupSound("assets/sound1.wav");
