@@ -10,130 +10,130 @@ extern class Howl {
 	function new(options:HowlOptions):Void;
 
 	/**
-     * Load the audio file.
-     * @return {Howler}
-     */
+	 * Load the audio file.
+	 * @return {Howler}
+	 */
 	function load():Howl;
-
+	
 	/**
-     * Play a sound or resume previous playback.
-     * @param {String/Number} sprite Sprite name for sprite playback or sound id to continue previous.
-     * @return {Int} Sound ID.
-     */
+	 * Play a sound or resume previous playback.
+	 * @param {String/Number} sprite Sprite name for sprite playback or sound id to continue previous.
+	 * @return {Int} Sound ID.
+	 */
 	@:overload(function(?sprite:Int):Int {})
 	function play(?sprite:String):Int;
 
 	/**
-     * Pause playback and save current position.
-     * @param {Int} id The sound ID (empty to pause all in group).
-     * @return {Howl}
-     */
+	 * Pause playback and save current position.
+	 * @param {Int} id The sound ID (empty to pause all in group).
+	 * @return {Howl}
+	 */
 	function pause(?id:Int):Howl;
 
 	/**
-     * Stop playback and reset to start.
-     * @param {Int} id The sound ID (empty to stop all in group).
-     * @return {Howl}
-     */
+	 * Stop playback and reset to start.
+	 * @param {Int} id The sound ID (empty to stop all in group).
+	 * @return {Howl}
+	 */
 	function stop(?id:Int):Howl;
 
 	/**
-     * Mute/unmute a single sound or all sounds in this Howl group.
-     * @param {Bool} muted Set to true to mute and false to unmute.
-     * @param {Int} id The sound ID to update (omit to mute/unmute all).
-     * @return {Howl}
-     */
+	 * Mute/unmute a single sound or all sounds in this Howl group.
+	 * @param {Bool} muted Set to true to mute and false to unmute.
+	 * @param {Int} id The sound ID to update (omit to mute/unmute all).
+	 * @return {Howl}
+	 */
 	function mute(?muted:Bool, ?id:Int):Howl;
 
 	/**
-     * Get/set the volume of this sound or of the Howl group. This method can optionally take 0, 1 or 2 arguments.
-     * volume() -> Returns the group's volume value.
-     * volume(id) -> Returns the sound id's current volume.
-     * volume(vol) -> Sets the volume of all sounds in this Howl group.
-     * volume(vol, id) -> Sets the volume of passed sound id.
-     * @return {Howl/Float} Returns self or current volume.
-     */
+	 * Get/set the volume of this sound or of the Howl group. This method can optionally take 0, 1 or 2 arguments.
+	 * volume() -> Returns the group's volume value.
+	 * volume(id) -> Returns the sound id's current volume.
+	 * volume(vol) -> Sets the volume of all sounds in this Howl group.
+	 * volume(vol, id) -> Sets the volume of passed sound id.
+	 * @return {Howl/Float} Returns self or current volume.
+	 */
 	@:overload(function(?vol:Float, ?id:Int):Howl {})
 	function volume(?vol:Float, ?id:Int):Float;
 
 	/**
-     * Get/set the loop parameter on a sound. This method can optionally take 0, 1 or 2 arguments.
-     * loop() -> Returns the group's loop value.
-     * loop(id) -> Returns the sound id's loop value.
-     * loop(loop) -> Sets the loop value for all sounds in this Howl group.
-     * loop(loop, id) -> Sets the loop value of passed sound id.
-     * @return {Howl/Boolean} Returns self or current loop value.
-     */
+	 * Get/set the loop parameter on a sound. This method can optionally take 0, 1 or 2 arguments.
+	 * loop() -> Returns the group's loop value.
+	 * loop(id) -> Returns the sound id's loop value.
+	 * loop(loop) -> Sets the loop value for all sounds in this Howl group.
+	 * loop(loop, id) -> Sets the loop value of passed sound id.
+	 * @return {Howl/Boolean} Returns self or current loop value.
+	 */
 	@:overload(function(?loop:Bool, ?id:Int):Howl {})
 	function loop(?loop:Bool, ?id:Int):Bool;
 
 	/**
-     * Get/set the seek position of a sound. This method can optionally take 0, 1 or 2 arguments.
-     * seek() -> Returns the first sound node's current seek position.
-     * seek(id) -> Returns the sound id's current seek position.
-     * seek(seek) -> Sets the seek position of the first sound node.
-     * seek(seek, id) -> Sets the seek position of passed sound id.
-     * @return {Howl/Number} Returns self or the current seek position.
-     */
+	 * Get/set the seek position of a sound. This method can optionally take 0, 1 or 2 arguments.
+	 * seek() -> Returns the first sound node's current seek position.
+	 * seek(id) -> Returns the sound id's current seek position.
+	 * seek(seek) -> Sets the seek position of the first sound node.
+	 * seek(seek, id) -> Sets the seek position of passed sound id.
+	 * @return {Howl/Number} Returns self or the current seek position.
+	 */
 	@:overload(function(?seek:Bool, ?id:Int):Howl {})
 	function seek(?seek:Float, ?id:Int):Float;
 
 	/**
-     * Check if a specific sound is currently playing or not.
-     * @param {Number} id The sound id to check. If none is passed, first sound is used.
-     * @return {Bool} True if playing and false if not.
-     */
+	 * Check if a specific sound is currently playing or not.
+	 * @param {Number} id The sound id to check. If none is passed, first sound is used.
+	 * @return {Bool} True if playing and false if not.
+	 */
 	function playing(?id:Int):Bool;
 
 	/**
-     * Get the duration of this sound.
-     * @return {Float} Audio duration.
-     */
+	 * Get the duration of this sound.
+	 * @return {Float} Audio duration.
+	 */
 	function duration():Float;
 
 	/**
-     * Unload and destroy the current Howl object.
-     * This will immediately stop all sound instances attached to this group.
-     */
+	 * Unload and destroy the current Howl object.
+	 * This will immediately stop all sound instances attached to this group.
+	 */
 	function unload():Void;
 
 	/**
-     * Fade a currently playing sound between two volumes (if no id is passsed, all sounds will fade).
-     * @param  {Float} from The value to fade from (0.0 to 1.0).
-     * @param  {Float} to The volume to fade to (0.0 to 1.0).
-     * @param  {Float} len Time in milliseconds to fade.
-     * @param  {Int} id The sound id (omit to fade all sounds).
-     * @return {Howl}
-     */
+	 * Fade a currently playing sound between two volumes (if no id is passsed, all sounds will fade).
+	 * @param  {Float} from The value to fade from (0.0 to 1.0).
+	 * @param  {Float} to The volume to fade to (0.0 to 1.0).
+	 * @param  {Float} len Time in milliseconds to fade.
+	 * @param  {Int} id The sound id (omit to fade all sounds).
+	 * @return {Howl}
+	 */
 	function fade(from:Float, to:Float, len:Int, ?id:Int):Howl;
 
 	/**
-     * Listen to a custom event.
-     * @param {String} event Event name.
-     * @param {Function} fn Listener to call.
-     * @param {Int} id (optional) Only listen to events for this sound.
-     * @return {Howl}
-     */
+	 * Listen to a custom event.
+	 * @param {String} event Event name.
+	 * @param {Function} fn Listener to call.
+	 * @param {Int} id (optional) Only listen to events for this sound.
+	 * @return {Howl}
+	 */
 	@:overload(function(event:String, fn:Int -> Void, ?id:Int):Howl {})
 	function on(event:String, fn:Void -> Void, ?id:Int):Howl;
 
 	/**
-     * Remove a custom event.
-     * @param {String} event Event name.
-     * @param {Function} fn (optional) Listener to remove. Leave empty to remove all.
-     * @param {Number} id (optional) Only remove events for this sound.
-     * @return {Howl}
-     */
+	 * Remove a custom event.
+	 * @param {String} event Event name.
+	 * @param {Function} fn (optional) Listener to remove. Leave empty to remove all.
+	 * @param {Number} id (optional) Only remove events for this sound.
+	 * @return {Howl}
+	 */
 	@:overload(function(event:String, fn:Int -> Void, ?id:Int):Howl {})
 	function off(event:String, ?fn:Void -> Void, ?id:Int):Howl;
 
 	/**
-     * Listen to a custom event and remove it once fired.
-     * @param {String} event Event name.
-     * @param {Function} fn Listener to call.
-     * @param {Int} id (optional) Only listen to events for this sound.
-     * @return {Howl}
-     */
+	 * Listen to a custom event and remove it once fired.
+	 * @param {String} event Event name.
+	 * @param {Function} fn Listener to call.
+	 * @param {Int} id (optional) Only listen to events for this sound.
+	 * @return {Howl}
+	 */
 	@:overload(function(event:String, fn:Int -> Void, ?id:Int):Howl {})
 	function once(event:String, fn:Void -> Void, ?id:Int):Howl;
 }
