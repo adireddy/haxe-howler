@@ -14,8 +14,8 @@
 	"contributors": [
 		"adireddy"
 	],
-	"releasenote": "v2 externs",
-	"version": "2.0.0",
+	"releasenote": "bug fixes in loop, volume and seek functions",
+	"version": "2.0.1",
 	"url": "https://github.com/adireddy/haxe-howler",
 	"dependencies": {
 
