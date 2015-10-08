@@ -14,7 +14,7 @@ extern class Howl {
 	 * @return {Howler}
 	 */
 	function load():Howl;
-	
+
 	/**
 	 * Play a sound or resume previous playback.
 	 * @param {String/Number} sprite Sprite name for sprite playback or sound id to continue previous.
