@@ -400,11 +400,16 @@ samples_Main.__super__ = pixi_plugins_app_Application;
 samples_Main.prototype = $extend(pixi_plugins_app_Application.prototype,{
 	_setupSound: function(url,loop) {
 		if(loop == null) loop = false;
+		var snd = null;
 		var options = { };
 		options.src = [url];
 		options.autoplay = false;
 		options.loop = loop;
-		var snd = new Howl(options);
+		options.onend = function(id) {
+			console.log(id);
+			console.log(snd.loop(id));
+		};
+		snd = new Howl(options);
 		return snd;
 	}
 	,_playSound1: function() {

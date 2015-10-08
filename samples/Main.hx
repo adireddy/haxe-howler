@@ -38,11 +38,16 @@ class Main extends Application {
 	}
 
 	function _setupSound(url:String, ?loop:Bool = false) {
+		var snd:Howl = null;
 		var options:HowlOptions = {};
 		options.src = [url];
 		options.autoplay = false;
 		options.loop = loop;
-		var snd:Howl = new Howl(options);
+		options.onend = function(id) {
+			trace(id);
+			trace(snd.loop(id));
+		};
+		snd = new Howl(options);
 		return snd;
 	}
 
