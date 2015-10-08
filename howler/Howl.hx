@@ -5,19 +5,19 @@ extern class Howl {
 
 	/**
 	 * Create an audio group controller.
-	 * @param {Object} o Passed in properties for this group.
+	 * @param {HowlOptions} o Passed in properties for this group.
 	*/
 	function new(options:HowlOptions):Void;
 
 	/**
 	 * Load the audio file.
-	 * @return {Howler}
+	 * @return {Howl}
 	 */
 	function load():Howl;
 
 	/**
 	 * Play a sound or resume previous playback.
-	 * @param {String/Number} sprite Sprite name for sprite playback or sound id to continue previous.
+	 * @param {String/Int} sprite Sprite name for sprite playback or sound id to continue previous.
 	 * @return {Int} Sound ID.
 	 */
 	@:overload(function(?sprite:Int):Int {})
@@ -53,8 +53,10 @@ extern class Howl {
 	 * volume(vol, id) -> Sets the volume of passed sound id.
 	 * @return {Howl/Float} Returns self or current volume.
 	 */
-	@:overload(function(?vol:Float, ?id:Int):Howl {})
-	function volume(?vol:Float, ?id:Int):Float;
+	@:overload(function(vol:Float, id:Int):Howl {})
+	@:overload(function(vol:Float):Howl {})
+	@:overload(function(id:Int):Float {})
+	function volume():Float;
 
 	/**
 	 * Get/set the loop parameter on a sound. This method can optionally take 0, 1 or 2 arguments.
@@ -62,10 +64,12 @@ extern class Howl {
 	 * loop(id) -> Returns the sound id's loop value.
 	 * loop(loop) -> Sets the loop value for all sounds in this Howl group.
 	 * loop(loop, id) -> Sets the loop value of passed sound id.
-	 * @return {Howl/Boolean} Returns self or current loop value.
+	 * @return {Howl/Bool} Returns self or current loop value.
 	 */
-	@:overload(function(?loop:Bool, ?id:Int):Howl {})
-	function loop(?loop:Bool, ?id:Int):Bool;
+	@:overload(function(loop:Bool, id:Int):Howl {})
+	@:overload(function(loop:Bool):Howl {})
+	@:overload(function(id:Int):Bool {})
+	function loop():Bool;
 
 	/**
 	 * Get/set the seek position of a sound. This method can optionally take 0, 1 or 2 arguments.
@@ -73,10 +77,12 @@ extern class Howl {
 	 * seek(id) -> Returns the sound id's current seek position.
 	 * seek(seek) -> Sets the seek position of the first sound node.
 	 * seek(seek, id) -> Sets the seek position of passed sound id.
-	 * @return {Howl/Number} Returns self or the current seek position.
+	 * @return {Howl/Float} Returns self or the current seek position.
 	 */
-	@:overload(function(?seek:Bool, ?id:Int):Howl {})
-	function seek(?seek:Float, ?id:Int):Float;
+	@:overload(function(seek:Float, id:Int):Howl {})
+	@:overload(function(seek:Float):Howl {})
+	@:overload(function(id:Int):Float {})
+	function seek():Float;
 
 	/**
 	 * Check if a specific sound is currently playing or not.
