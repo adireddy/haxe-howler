@@ -408,6 +408,9 @@ samples_Main.prototype = $extend(pixi_plugins_app_Application.prototype,{
 		options.onend = function(id) {
 			console.log(id);
 			console.log(snd.loop(id));
+			console.log(snd.volume(id));
+			snd.volume(0.5);
+			if(snd.volume(id) <= 0) snd.stop(id);
 		};
 		snd = new Howl(options);
 		return snd;

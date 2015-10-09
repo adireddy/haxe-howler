@@ -53,8 +53,8 @@ extern class Howl {
 	 * volume(vol, id) -> Sets the volume of passed sound id.
 	 * @return {Howl/Float} Returns self or current volume.
 	 */
-	@:overload(function(vol:Float, id:Int):Howl {})
-	@:overload(function(vol:Float):Howl {})
+	@:overload(function(vol:Float, id:Int):Dynamic {})
+	@:overload(function(vol:Float):Dynamic {})
 	@:overload(function(id:Int):Float {})
 	function volume():Float;
 
@@ -79,8 +79,8 @@ extern class Howl {
 	 * seek(seek, id) -> Sets the seek position of passed sound id.
 	 * @return {Howl/Float} Returns self or the current seek position.
 	 */
-	@:overload(function(seek:Float, id:Int):Howl {})
-	@:overload(function(seek:Float):Howl {})
+	@:overload(function(seek:Float, id:Int):Dynamic {})
+	@:overload(function(seek:Float):Dynamic {})
 	@:overload(function(id:Int):Float {})
 	function seek():Float;
 

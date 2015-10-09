@@ -43,9 +43,13 @@ class Main extends Application {
 		options.src = [url];
 		options.autoplay = false;
 		options.loop = loop;
-		options.onend = function(id) {
+		options.onend = function(id:Int) {
 			trace(id);
 			trace(snd.loop(id));
+			trace(snd.volume(id));
+			snd.volume(0.5);
+
+			if(snd.volume(id) <= 0) snd.stop(id);
 		};
 		snd = new Howl(options);
 		return snd;
