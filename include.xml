@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension>
+	
+	<section if="html5">
+		
+		<dependency path="libs/howler.min.js" />
+		
+	</section>
+	
+</extension>
