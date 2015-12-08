@@ -14,8 +14,8 @@
 	"contributors": [
 		"adireddy"
 	],
-	"releasenote": "bug fixes in loop, volume and seek functions",
-	"version": "2.0.2",
+	"releasenote": "adds howler.min.js as dependency",
+	"version": "2.0.3",
 	"url": "https://github.com/adireddy/haxe-howler",
 	"dependencies": {
 
