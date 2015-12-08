@@ -10,12 +10,12 @@
 		"audio",
 		"sound"
 	],
-	"description": "Externs of HowlerJS v2.0.0-beta for Haxe - Audio library for the modern web.",
+	"description": "Externs of HowlerJS v2.0.0 for Haxe - Audio library for the modern web.",
 	"contributors": [
 		"adireddy"
 	],
-	"releasenote": "externs for 2.0.0-beta",
-	"version": "2.0.0-beta.2",
+	"releasenote": "bug fixes in loop, volume and seek functions",
+	"version": "2.0.2",
 	"url": "https://github.com/adireddy/haxe-howler",
 	"dependencies": {
 

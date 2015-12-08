@@ -30,5 +30,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-exec");
     grunt.loadNpmTasks("grunt-npm-install");
     grunt.loadNpmTasks("grunt-contrib-copy");
-    grunt.registerTask("default", ["haxe", "zip", "copy"]);
+    grunt.registerTask("default", ["haxe", "copy"]);
 };
