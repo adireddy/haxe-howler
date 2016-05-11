@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         },
 
         zip: {
-            "howler.zip": ["howler/**", "haxelib.json"]
+            "howler.zip": ["src/**", "libs/**", "haxelib.json", "README.md"]
         },
 
         copy: {
