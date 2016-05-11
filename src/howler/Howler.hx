@@ -1,5 +1,6 @@
 package howler;
 
+import haxe.extern.EitherType;
 @:native("Howler")
 extern class Howler {
 
@@ -41,12 +42,17 @@ extern class Howler {
 	 * @param  {Float} vol Volume from 0.0 to 1.0.
 	 * @return {Howler/Float} Returns self or current volume.
 	 */
-	@:overload(function(vol:Float):Howler {})
-	static function volume(vol:Float):Float;
+	static function volume(vol:Float):EitherType<Howler, Float>;
 
 	/**
 	 * Handle muting and unmuting globally.
 	 * @param {Boolean} muted Is muted or not.
 	 */
 	static function mute(muted:Bool):Howler;
+
+	/**
+     * Unload and destroy all currently loaded Howl objects.
+     * @return {Howler}
+     */
+	static function unload():Howler;
 }

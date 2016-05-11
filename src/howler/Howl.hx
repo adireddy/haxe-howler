@@ -1,5 +1,6 @@
 package howler;
 
+import haxe.extern.EitherType;
 @:native("Howl")
 extern class Howl {
 
@@ -8,6 +9,13 @@ extern class Howl {
 	 * @param {HowlOptions} o Passed in properties for this group.
 	*/
 	function new(options:HowlOptions):Void;
+
+	/**
+     * Initialize a new Howl group object.
+     * @param  {Object} o Passed in properties for this group.
+     * @return {Howl}
+     */
+	function init(o:Dynamic):Howl;
 
 	/**
 	 * Load the audio file.
@@ -20,8 +28,7 @@ extern class Howl {
 	 * @param {String/Int} sprite Sprite name for sprite playback or sound id to continue previous.
 	 * @return {Int} Sound ID.
 	 */
-	@:overload(function(?sprite:Int):Int {})
-	function play(?sprite:String):Int;
+	function play(?sprite:EitherType<String, Int>):Int;
 
 	/**
 	 * Pause playback and save current position.
@@ -43,7 +50,7 @@ extern class Howl {
 	 * @param {Int} id The sound ID to update (omit to mute/unmute all).
 	 * @return {Howl}
 	 */
-	function mute(?muted:Bool, ?id:Int):Howl;
+	function mute(?muted:Bool = true, ?id:Int):Howl;
 
 	/**
 	 * Get/set the volume of this sound or of the Howl group. This method can optionally take 0, 1 or 2 arguments.
@@ -59,6 +66,16 @@ extern class Howl {
 	function volume():Float;
 
 	/**
+	 * Fade a currently playing sound between two volumes (if no id is passsed, all sounds will fade).
+	 * @param  {Float} from The value to fade from (0.0 to 1.0).
+	 * @param  {Float} to The volume to fade to (0.0 to 1.0).
+	 * @param  {Float} len Time in milliseconds to fade.
+	 * @param  {Int} id The sound id (omit to fade all sounds).
+	 * @return {Howl}
+	 */
+	function fade(from:Float, to:Float, len:Int, ?id:Int):Howl;
+
+	/**
 	 * Get/set the loop parameter on a sound. This method can optionally take 0, 1 or 2 arguments.
 	 * loop() -> Returns the group's loop value.
 	 * loop(id) -> Returns the sound id's loop value.
@@ -72,6 +89,19 @@ extern class Howl {
 	function loop():Bool;
 
 	/**
+     * Get/set the playback rate of a sound. This method can optionally take 0, 1 or 2 arguments.
+     *   rate() -> Returns the first sound node's current playback rate.
+     *   rate(id) -> Returns the sound id's current playback rate.
+     *   rate(rate) -> Sets the playback rate of all sounds in this Howl group.
+     *   rate(rate, id) -> Sets the playback rate of passed sound id.
+     * @return {Howl/Float} Returns self or the current playback rate.
+     */
+	@:overload(function(rate:Float, id:Int):EitherType<Howl, Float> {})
+	@:overload(function(rate:Float):EitherType<Howl, Float> {})
+	@:overload(function(id:Int):EitherType<Howl, Float> {})
+	function rate():EitherType<Howl, Float>;
+
+	/**
 	 * Get/set the seek position of a sound. This method can optionally take 0, 1 or 2 arguments.
 	 * seek() -> Returns the first sound node's current seek position.
 	 * seek(id) -> Returns the sound id's current seek position.
@@ -79,10 +109,10 @@ extern class Howl {
 	 * seek(seek, id) -> Sets the seek position of passed sound id.
 	 * @return {Howl/Float} Returns self or the current seek position.
 	 */
-	@:overload(function(seek:Float, id:Int):Dynamic {})
-	@:overload(function(seek:Float):Dynamic {})
-	@:overload(function(id:Int):Float {})
-	function seek():Float;
+	@:overload(function(seek:Float, id:Int):EitherType<Howl, Float> {})
+	@:overload(function(seek:Float):EitherType<Howl, Float> {})
+	@:overload(function(id:Int):EitherType<Howl, Float> {})
+	function seek():EitherType<Howl, Float>;
 
 	/**
 	 * Check if a specific sound is currently playing or not.
@@ -98,20 +128,16 @@ extern class Howl {
 	function duration():Float;
 
 	/**
+     * Returns the current loaded state of this Howl.
+     * @return {String} 'unloaded', 'loading', 'loaded'
+     */
+	function state():String;
+
+	/**
 	 * Unload and destroy the current Howl object.
 	 * This will immediately stop all sound instances attached to this group.
 	 */
 	function unload():Void;
-
-	/**
-	 * Fade a currently playing sound between two volumes (if no id is passsed, all sounds will fade).
-	 * @param  {Float} from The value to fade from (0.0 to 1.0).
-	 * @param  {Float} to The volume to fade to (0.0 to 1.0).
-	 * @param  {Float} len Time in milliseconds to fade.
-	 * @param  {Int} id The sound id (omit to fade all sounds).
-	 * @return {Howl}
-	 */
-	function fade(from:Float, to:Float, len:Int, ?id:Int):Howl;
 
 	/**
 	 * Listen to a custom event.
