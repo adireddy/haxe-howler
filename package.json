@@ -1,36 +1,36 @@
 {
-	"name": "howlerjs",
-	"version": "2.0.2",
-	"description": "Externs of howler.js - Modern Web Audio Javascript Library",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/adireddy/haxe-howler"
-	},
-	"keywords": [
-		"js",
-		"haxe",
-		"howler",
-		"extern",
-		"web",
-		"audio",
-		"sound"
-	],
-	"author": {
-		"name": "Adi Reddy Mora",
-		"email": "adiinteractive@gmail.com"
-	},
-	"dependencies": {
-		"grunt": "latest",
-		"grunt-cli": "latest"
-	},
-	"license": "MIT",
-	"devDependencies": {
-		"grunt": "^0.4.5",
-		"grunt-contrib-copy": "^0.8.0",
-		"grunt-exec": "^0.4.6",
-		"grunt-haxe": "^0.1.12",
-		"grunt-npm-install": "^0.2.0",
-		"grunt-shell": "^1.1.1",
-		"grunt-zip": "^0.16.0"
-	}
+    "name": "howlerjs",
+    "version": "2.0.3",
+    "description": "Externs of howler.js - Modern Web Audio Javascript Library",
+    "repository": {
+	"type": "git",
+	"url": "https://github.com/adireddy/haxe-howler"
+    },
+    "keywords": [
+	"js",
+	"haxe",
+	"howler",
+	"extern",
+	"web",
+	"audio",
+	"sound"
+    ],
+    "author": {
+	"name": "Adi Reddy Mora",
+	"email": "adiinteractive@gmail.com"
+    },
+    "dependencies": {
+	"grunt": "latest",
+	"grunt-cli": "latest"
+    },
+    "license": "MIT",
+    "devDependencies": {
+	"grunt": "^0.4.5",
+	"grunt-contrib-copy": "^0.8.0",
+	"grunt-exec": "^0.4.6",
+	"grunt-haxe": "^0.1.12",
+	"grunt-npm-install": "^0.2.0",
+	"grunt-shell": "^1.1.1",
+	"grunt-zip": "^0.16.0"
+    }
 }

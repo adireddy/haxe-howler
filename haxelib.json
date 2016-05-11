@@ -1,23 +1,23 @@
 {
-	"name": "howlerjs",
-	"license": "MIT",
-	"tags": [
-		"js",
-		"haxe",
-		"howler",
-		"haxe",
-		"web",
-		"audio",
-		"sound"
-	],
-	"description": "Externs of HowlerJS v2.0.0 for Haxe - Audio library for the modern web.",
-	"contributors": [
-		"adireddy"
-	],
-	"releasenote": "bug fixes in loop, volume and seek functions",
-	"version": "2.0.2",
-	"url": "https://github.com/adireddy/haxe-howler",
-	"dependencies": {
-
-	}
+    "name": "howlerjs",
+    "classPath": "src",
+    "license": "MIT",
+    "tags": [
+	"js",
+	"haxe",
+	"howler",
+	"haxe",
+	"web",
+	"audio",
+	"sound"
+    ],
+    "description": "Externs of HowlerJS v2.0.0 for Haxe - Audio library for the modern web.",
+    "contributors": [
+	"adireddy"
+    ],
+    "releasenote": "added missing functions - rate, state, etc",
+    "version": "2.0.3",
+    "url": "https://github.com/adireddy/haxe-howler",
+    "dependencies": {
+    }
 }
