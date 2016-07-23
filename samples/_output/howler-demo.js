@@ -440,8 +440,9 @@ var samples_Main = function() {
 	pixi_plugins_app_Application.prototype.start.call(this);
 	this._btnContainer = new PIXI.Container();
 	this.stage.addChild(this._btnContainer);
+	Howler.ctx = null;
 	this._bgSound = this._setupSound("assets/loop.mp3",true);
-	this._sound1 = this._setupSound("assets/sound1.wav");
+	this._sound1 = this._setupSound("assets/funk100.mp3");
 	this._sound2 = this._setupSound("assets/sound2.wav");
 	this._bgSound.play();
 	this._addButton("SOUND 1",0,0,100,30,$bind(this,this._playSound1));
@@ -458,14 +459,11 @@ samples_Main.prototype = $extend(pixi_plugins_app_Application.prototype,{
 	_setupSound: function(url,loop) {
 		if(loop == null) loop = false;
 		var snd = null;
-		var options = { };
+		var options = { html5 : true};
 		options.src = [url];
 		options.autoplay = false;
 		options.loop = loop;
 		options.onend = function(id) {
-			console.log(id);
-			console.log(snd.loop(id));
-			console.log(snd.volume(id));
 			snd.volume(0.5);
 			if(snd.volume(id) <= 0) snd.stop(id);
 		};

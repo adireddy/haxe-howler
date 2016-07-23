@@ -1,5 +1,6 @@
 package samples;
 
+import howler.Howler;
 import js.Browser;
 import pixi.core.display.Container;
 import pixi.plugins.app.Application;
@@ -24,8 +25,9 @@ class Main extends Application {
 		_btnContainer = new Container();
 		stage.addChild(_btnContainer);
 
+		Howler.ctx = null;
 		_bgSound = _setupSound("assets/loop.mp3", true);
-		_sound1 = _setupSound("assets/sound1.wav");
+		_sound1 = _setupSound("assets/funk100.mp3");
 		_sound2 = _setupSound("assets/sound2.wav");
 
 		_bgSound.play();
@@ -39,14 +41,11 @@ class Main extends Application {
 
 	function _setupSound(url:String, ?loop:Bool = false) {
 		var snd:Howl = null;
-		var options:HowlOptions = {};
+		var options:HowlOptions = {html5: true};
 		options.src = [url];
 		options.autoplay = false;
 		options.loop = loop;
 		options.onend = function(id:Int) {
-			trace(id);
-			trace(snd.loop(id));
-			trace(snd.volume(id));
 			snd.volume(0.5);
 
 			if(snd.volume(id) <= 0) snd.stop(id);
