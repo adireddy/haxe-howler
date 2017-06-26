@@ -1,75 +1,82 @@
 package samples;
 
-import pixi.display.DisplayObjectContainer;
+import howler.Howler;
+import js.Browser;
+import pixi.core.display.Container;
+import pixi.plugins.app.Application;
 import pixi.Button;
-import pixi.PixiApplication;
 
 import howler.Howl;
 
-class Main extends PixiApplication {
+class Main extends Application {
 
-    var _btnContainer:DisplayObjectContainer;
-    var _bgSound:Howl;
-    var _sound1:Howl;
-    var _sound2:Howl;
+	var _btnContainer:Container;
+	var _bgSound:Howl;
+	var _sound1:Howl;
+	var _sound2:Howl;
 
-    public function new() {
-        super();
-        backgroundColor = 0x5F04B4;
+	public function new() {
+		super();
 
-        _btnContainer = new DisplayObjectContainer();
-        container.addChild(_btnContainer);
+		pixelRatio = Math.floor(Browser.window.devicePixelRatio);
+		backgroundColor = 0x5F04B4;
+		super.start();
 
-        _bgSound = _setupSound("assets/loop.mp3");
-        _bgSound.loop(true);
-        _sound1 = _setupSound("assets/sound1.wav");
-        _sound2 = _setupSound("assets/sound2.wav");
+		_btnContainer = new Container();
+		stage.addChild(_btnContainer);
 
-        _addButton("LOOP SOUND", 0, 0, 100, 30, _playBGSound);
-        _addButton("SOUND 1", 100, 0, 100, 30, _playSound1);
-        _addButton("SOUND 2", 200, 0, 100, 30, _playSound2);
-        _addButton("STOP ALL", 300, 0, 100, 30, _stopAll);
+		Howler.ctx = null;
+		_bgSound = _setupSound("assets/loop.mp3", true);
+		_sound1 = _setupSound("assets/funk100.mp3");
+		_sound2 = _setupSound("assets/sound2.wav");
 
-        _btnContainer.x = 200;
-        _btnContainer.y = 285;
-    }
+		_bgSound.play();
 
-    function _setupSound(url:String) {
-        var options:HowlOptions = {};
-        options.urls = [url];
-        options.autoplay = false;
-        var snd = new Howl(options);
-        return snd;
-    }
+		_addButton("SOUND 1", 0, 0, 100, 30, _playSound1);
+		_addButton("SOUND 2", 100, 0, 100, 30, _playSound2);
+		_addButton("STOP ALL", 220, 0, 100, 30, _stopAll);
 
-    function _playBGSound() {
-        _bgSound.play();
-    }
+		_btnContainer.position.set((Browser.window.innerWidth - 320) / 2, (Browser.window.innerHeight - 30) / 2);
+	}
 
-    function _playSound1() {
-        _sound1.play();
-    }
+	function _setupSound(url:String, ?loop:Bool = false) {
+		var snd:Howl = null;
+		var options:HowlOptions = {html5: true};
+		options.src = [url];
+		options.autoplay = false;
+		options.loop = loop;
+		options.onend = function(id:Int) {
+			snd.volume(0.5);
 
-    function _playSound2() {
-        _sound2.play();
-    }
+			if(snd.volume(id) <= 0) snd.stop(id);
+		};
+		snd = new Howl(options);
+		return snd;
+	}
 
-    function _stopAll() {
-        _bgSound.stop();
-        _sound1.stop();
-        _sound2.stop();
-    }
+	inline function _playSound1() {
+		_sound1.play();
+	}
 
-    function _addButton(label:String, x:Float, y:Float, width:Float, height:Float, callback:Dynamic) {
-        var button = new Button(label, width, height);
-        button.x = x;
-        button.y = y;
-        button.action.add(callback);
-        button.enable();
-        _btnContainer.addChild(button);
-    }
+	inline function _playSound2() {
+		_sound2.play();
+	}
 
-    static function main() {
-        new Main();
-    }
+	function _stopAll() {
+		_bgSound.stop();
+		_sound1.stop();
+		_sound2.stop();
+	}
+
+	function _addButton(label:String, x:Float, y:Float, width:Float, height:Float, callback:Dynamic) {
+		var button = new Button(label, width, height);
+		button.position.set(x, y);
+		button.action.add(callback);
+		button.enable();
+		_btnContainer.addChild(button);
+	}
+
+	static function main() {
+		new Main();
+	}
 }

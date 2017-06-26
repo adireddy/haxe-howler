@@ -1,4 +1,4 @@
-haxe-howler ![Build Status](https://travis-ci.org/adireddy/haxe-howler.svg?branch=master) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Haxelib Version](https://img.shields.io/github/tag/adireddy/haxe-howler.svg?style=flat&label=haxelib)](http://lib.haxe.org/p/howlerjs) ![Build Status](https://travis-ci.org/adireddy/haxe-howler.svg?branch=master) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 =========
 
 ![haxe howler logo](https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png)
@@ -10,7 +10,6 @@ Externs of howler.js for Haxe - Modern Web Audio Javascript Library.
 ```haxe
 haxelib install howlerjs
 ```
-<i>Please note that these externs are originally created by [INSWEATER](https://github.com/insweater/HaxeHowlerJS). I modified a few things and made it available on haxelib.</i>
 
 ### Demo ###
 
@@ -26,13 +25,12 @@ import howler.Howl;
 class Main {
 
     public function new() {
-		var options:HowlOptions = new HowlOptions();
-		options.urls = ["sound.mp3", "sound.ogg"];
+		var options:HowlOptions = {};
+		options.src = ["sound.mp3", "sound.ogg"];
 		options.autoplay = false;
-		options.onload = function() {
-			snd.play();
-		};
-		var snd = new Howl(options);
+		options.loop = true;
+		var snd:Howl = new Howl(options);
+		snd.play();
     }
 
     static function main() {

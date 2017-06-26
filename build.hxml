@@ -1,3 +1,9 @@
+-cmd haxelib newrepo
+-cmd haxelib install pixijs || true
+-cmd haxelib install msignal || true
+
+--next
+
 -cp samples
 -cp src
 -main samples.Main
@@ -5,7 +11,7 @@
 
 -lib pixijs
 -lib msignal
-
+-debug
 -D source-map-content
 
 -dce full

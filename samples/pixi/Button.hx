@@ -1,12 +1,13 @@
 package pixi;
 
-import pixi.geom.Rectangle;
-import pixi.text.Text;
-import pixi.primitives.Graphics;
-import msignal.Signal.Signal1;
-import pixi.display.DisplayObjectContainer;
+import pixi.interaction.EventTarget;
+import pixi.core.graphics.Graphics;
+import pixi.core.math.shapes.Rectangle;
+import pixi.core.text.Text;
+import pixi.core.display.Container;
+import msignal.Signal;
 
-class Button extends DisplayObjectContainer {
+class Button extends Container {
 
 	public static inline var OVER_COLOUR:Int = 0xDF7401;
 	public static inline var OUT_COLOUR:Int = 0x2E64FE;
@@ -35,19 +36,19 @@ class Button extends DisplayObjectContainer {
 	function _setupBackground(width:Float, height:Float) {
 		_rect = new Rectangle(0, 0, width, height);
 		_background = new Graphics();
-		_background.hitArea = _rect;
+		_background.interactive = true;
 		_redraw(Button.OUT_COLOUR);
 		addChild(_background);
 
 		_background.interactive = true;
-		_background.mouseover = _onMouseOver;
-		_background.mouseout = _onMouseOut;
-		_background.mousedown = _onMouseDown;
-		_background.mouseup = _onMouseUp;
-		_background.mouseupoutside = _onMouseUpOutside;
-		_background.touchstart = _onTouchStart;
-		_background.touchend = _onTouchEnd;
-		_background.touchendoutside = _onTouchEndOutside;
+		_background.on("mouseover", _onMouseOver);
+		_background.on("mouseout", _onMouseOut);
+		_background.on("mousedown", _onMouseDown);
+		_background.on("mouseup", _onMouseUp);
+		_background.on("mouseupoutside", _onMouseUpOutside);
+		_background.on("touchstart", _onTouchStart);
+		_background.on("touchend", _onTouchEnd);
+		_background.on("touchendoutside", _onTouchEndOutside);
 	}
 
 	function _setupLabel(width:Float, height:Float, fontSize:Int) {
@@ -56,7 +57,7 @@ class Button extends DisplayObjectContainer {
 		style.font = (size) + "px Arial";
 		style.fill = Button.TEXT_COLOUR;
 		_label = new Text("", style);
-		_label.anchor.set(0.5, 0.5);
+		_label.anchor.set(0.5);
 		_label.x = width / 2;
 		_label.y = height / 2;
 		addChild(_label);
@@ -73,49 +74,49 @@ class Button extends DisplayObjectContainer {
 		_background.endFill();
 	}
 
-	public function setText(label:String) {
-		_label.setText(label);
+	public inline function setText(label:String) {
+		_label.text = label;
 	}
 
-	function _onMouseDown(data:InteractionData) {
+	function _onMouseDown(target:EventTarget) {
 		if (_enabled) _redraw(Button.OVER_COLOUR);
 	}
 
-	function _onMouseUp(data:InteractionData) {
+	function _onMouseUp(target:EventTarget) {
 		if (_enabled) {
 			action.dispatch(_data);
 			_redraw(Button.OUT_COLOUR);
 		}
 	}
 
-	function _onMouseUpOutside(data:InteractionData) {
+	function _onMouseUpOutside(target:EventTarget) {
 		if (_enabled) _redraw(Button.OUT_COLOUR);
 	}
 
-	function _onMouseOver(data:InteractionData) {
+	function _onMouseOver(target:EventTarget) {
 		if (_enabled) _redraw(Button.OVER_COLOUR);
 	}
 
-	function _onMouseOut(data:InteractionData) {
+	function _onMouseOut(target:EventTarget) {
 		if (_enabled) _redraw(Button.OUT_COLOUR);
 	}
 
-	function _onTouchEndOutside(data:InteractionData) {
+	function _onTouchEndOutside(target:EventTarget) {
 		if (_enabled) _redraw(Button.OUT_COLOUR);
 	}
 
-	function _onTouchEnd(data:InteractionData) {
+	function _onTouchEnd(target:EventTarget) {
 		if (_enabled) {
 			_redraw(Button.OUT_COLOUR);
 			action.dispatch(_data);
 		}
 	}
 
-	function _onTouchStart(data:InteractionData) {
+	function _onTouchStart(target:EventTarget) {
 		if (_enabled) _redraw(Button.OVER_COLOUR);
 	}
 
-	public function enable() {
+	public inline function enable() {
 		_enabled = true;
 	}
 

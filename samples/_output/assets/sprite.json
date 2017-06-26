@@ -1,0 +1,35 @@
+{
+  "src": "sprite.m4a",
+  "sprite": [
+    {
+      "name": "bell",
+      "start": 0,
+      "duration": 2.1149886621315193,
+      "loop": true
+    },
+    {
+      "name": "canopening",
+      "start": 4,
+      "duration": 2,
+      "loop": false
+    },
+    {
+      "name": "countdown",
+      "start": 7,
+      "duration": 12.198095238095238,
+      "loop": false
+    },
+    {
+      "name": "glass",
+      "start": 21,
+      "duration": 0.5485714285714286,
+      "loop": false
+    },
+    {
+      "name": "loop",
+      "start": 23,
+      "duration": 56.03265306122449,
+      "loop": true
+    }
+  ]
+}
