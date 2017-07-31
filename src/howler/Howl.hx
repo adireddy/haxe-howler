@@ -317,8 +317,37 @@ typedef HowlOptions = {
 	 * The first parameter is the ID of the sound.
 	 */
     @:optional var onfaded:Int -> Void;
-
-
+    /**
+	 * The 3D spatial orientation: [x, y, z].
+	 */
+    @:optional var orientation:Array<Float>;
+    /**
+	 * The 3D position: [x, y, z].
+	 */
+    @:optional var pos:Array<Float>;
+    /**
+	 * The 2D pan value of the sound: a value between -1.0 and 1.0.
+	 */
+    @:optional var stereo:Float;
+    /**
+	 * The panning attributes of a sound: See the PannerAttributes typedef for more information.
+	 */
+    @:optional var pannerAttr:PannerAttributes;
+    /**
+	 * Fires when the sound pan value is set.
+	 * The first parameter is the ID of the sound.
+	 */
+    @:optional var onstereo:Int -> Void;
+    /**
+	 * Fires when the sound pos is set.
+	 * The first parameter is the ID of the sound.
+	 */
+    @:optional var onpos:Int -> Void;
+    /**
+	 * Fires when the sound orientation is set.
+	 * The first parameter is the ID of the sound.
+	 */
+    @:optional var onorientation:Int -> Void;
 }
 
 typedef PannerAttributes =
