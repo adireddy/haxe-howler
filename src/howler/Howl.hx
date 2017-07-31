@@ -200,6 +200,35 @@ extern class Howl {
     @:overload(function(id:Int):Array<Float> {})
     static function pos():EitherType<Howl, Array<Float>>;
 
+    /**
+    * Get/set the direction the audio source is pointing in the 3D cartesian coordinate
+    * space. Depending on how direction the sound is, based on the `cone` attributes,
+    * a sound pointing away from the listener can be quiet or silent.
+    * This method can optionally take 4, 3, 1 or 0 arguments.
+     *   orientation() -> Returns the first sound node's current orientation.
+     *   orientation(id) -> Returns the sound id's current orientation.
+     *   orientation(x, y, z) -> Sets the orientation of all sounds in this Howl group.
+     *   orientation(x, y, z, id) -> Sets the position of passed sound id.
+    * @return {Howl/Array}    Returns self or the current 3D spatial orientation: [x, y, z].
+    */
+    @:overload(function(x:Float, y:Float, z:Float, id:Int):Dynamic {})
+    @:overload(function(x:Float, y:Float, z:Float):Dynamic {})
+    @:overload(function(id:Int):Array<Float> {})
+    static function orientation():EitherType<Howl, Array<Float>>;
+
+    /**
+    * Get/set the panner node's attributes for a sound or group of sounds.
+    * This method can optionally take 0, 1 or 2 arguments.
+    *   pannerAttr() -> Returns the group's values.
+    *   pannerAttr(id) -> Returns the sound id's values.
+    *   pannerAttr(pannerAttributes) -> Set's the values of all sounds in this Howl group.
+    *   pannerAttr(pannerAttributes, id) -> Set's the values of passed sound id.
+    * @return {Howl/Object} Returns self or current panner attributes.
+    */
+    @:overload(function(pannerAttributes:PannerAttributes, id:Int):Dynamic {})
+    @:overload(function(pannerAttributes:PannerAttributes):Dynamic {})
+    @:overload(function(id:Int):PannerAttributes {})
+    static function pannerAttr():EitherType<Howl, PannerAttributes>;
 }
 
 typedef HowlOptions = {
@@ -288,4 +317,44 @@ typedef HowlOptions = {
 	 * The first parameter is the ID of the sound.
 	 */
     @:optional var onfaded:Int -> Void;
+
+
+}
+
+typedef PannerAttributes =
+{
+    /**
+	 * (360 by default) There will be no volume reduction inside this angle.
+	 */
+    @:optional var coneInnerAngle:Float;
+    /**
+	 * (360 by default) (360 by default) The volume will be reduced to a constant value of `coneOuterGain` outside this angle.
+	 */
+    @:optional var coneOuterAngle:Float;
+    /**
+	 * (0 by default) The amount of volume reduction outside of `coneOuterAngle`.
+	 */
+    @:optional var coneOuterGain:Float;
+    /**
+	 * ('inverse' by default) Determines algorithm to use to reduce volume as audio moves away from listener.
+	 * Can be `linear`, `inverse` or `exponential`.
+	 */
+    @:optional var distanceModel:String;
+    /**
+	 * (10000 by default) Volume won't reduce between source/listener beyond this distance.
+	 */
+    @:optional var maxDistance:Float;
+    /**
+	 * ('HRTF' by default) Determines which spatialization algorithm is used to position audio.
+     * Can be `HRTF` or `equalpower`.
+	 */
+    @:optional var panningModel:String;
+    /**
+	 * (1 by default) A reference distance for reducing volume as the source moves away from the listener.
+	 */
+    @:optional var refDistance:Float;
+    /**
+	 * (1 by default) How quickly the volume reduces as source moves from listener.
+	 */
+    @:optional var rolloffFacor:Float;
 }
