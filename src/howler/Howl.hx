@@ -319,6 +319,31 @@ typedef HowlOptions = {
 	 */
 	@:optional var onfade:Int -> Void;
 	/**
+	 * Fires when the sound has been stopped.
+	 * The first parameter is the ID of the sound.
+	 */
+	@:optional var onstop:Int -> Void;
+	/**
+	 * Fires when the sound has been muted/unmuted.
+	 * The first parameter is the ID of the sound.
+	 */
+	@:optional var onmute:Int -> Void;
+	/**
+	 * Fires when the sound's volume has changed.
+	 * The first parameter is the ID of the sound.
+	 */
+	@:optional var onvolume:Int -> Void;
+	/**
+	 * Fires when the sound's playback rate has changed.
+	 * The first parameter is the ID of the sound.
+	 */
+	@:optional var onrate:Int -> Void;
+	/**
+	 * Fires when the sound has been seeked.
+	 * The first parameter is the ID of the sound.
+	 */
+	@:optional var onseek:Int -> Void;
+	/**
 	 * The 3D spatial orientation: [x, y, z].
 	 */
 	@:optional var orientation:Array<Float>;
