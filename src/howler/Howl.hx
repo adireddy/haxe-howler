@@ -232,6 +232,7 @@ extern class Howl {
 }
 
 typedef HowlOptions = {
+    >PannerAttributes,
     /**
 	 * Set to true to automatically start playback when sound is loaded.
 	 */
@@ -331,11 +332,6 @@ typedef HowlOptions = {
     @:optional var stereo:Float;
     /**
 	 * The panning attributes of a sound: See the PannerAttributes typedef for more information.
-	 */
-    @:optional var pannerAttr:PannerAttributes;
-    /**
-	 * Fires when the sound pan value is set.
-	 * The first parameter is the ID of the sound.
 	 */
     @:optional var onstereo:Int -> Void;
     /**
