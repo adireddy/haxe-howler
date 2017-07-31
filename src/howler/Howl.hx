@@ -180,7 +180,7 @@ extern class Howl {
     @:overload(function(pan:Float, id:Int):Dynamic {})
     @:overload(function(pan:Float):Dynamic {})
     @:overload(function(id:Int):Float {})
-    static function stereo():EitherType<Howl, Float>;
+    function stereo():EitherType<Howl, Float>;
 
     /**
     * Get/set the 3D spatial position of the audio source for this sound or
@@ -198,7 +198,7 @@ extern class Howl {
     @:overload(function(x:Float, y:Float, z:Float, id:Int):Dynamic {})
     @:overload(function(x:Float, y:Float, z:Float):Dynamic {})
     @:overload(function(id:Int):Array<Float> {})
-    static function pos():EitherType<Howl, Array<Float>>;
+    function pos():EitherType<Howl, Array<Float>>;
 
     /**
     * Get/set the direction the audio source is pointing in the 3D cartesian coordinate
@@ -214,7 +214,7 @@ extern class Howl {
     @:overload(function(x:Float, y:Float, z:Float, id:Int):Dynamic {})
     @:overload(function(x:Float, y:Float, z:Float):Dynamic {})
     @:overload(function(id:Int):Array<Float> {})
-    static function orientation():EitherType<Howl, Array<Float>>;
+    function orientation():EitherType<Howl, Array<Float>>;
 
     /**
     * Get/set the panner node's attributes for a sound or group of sounds.
@@ -228,7 +228,7 @@ extern class Howl {
     @:overload(function(pannerAttributes:PannerAttributes, id:Int):Dynamic {})
     @:overload(function(pannerAttributes:PannerAttributes):Dynamic {})
     @:overload(function(id:Int):PannerAttributes {})
-    static function pannerAttr():EitherType<Howl, PannerAttributes>;
+    function pannerAttr():EitherType<Howl, PannerAttributes>;
 }
 
 typedef HowlOptions = {
