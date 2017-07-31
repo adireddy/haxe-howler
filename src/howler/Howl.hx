@@ -241,7 +241,7 @@ typedef HowlOptions = {
 	 * howler.js automatically detects your file format from the extension, but you may also
 	 * specify a format in situations where extraction won't work (such as with a SoundCloud stream).
 	 */
-	@:optional var ext:Array<String>;
+	@:optional var format:Array<String>;
 	/**
 	 * Set to true to force HTML5 Audio. This should be used for large audio files
 	 * so that you don't have to wait for the full file to be downloaded and decoded before playing.
@@ -317,32 +317,7 @@ typedef HowlOptions = {
 	 * Fires when the current sound finishes fading in/out.
 	 * The first parameter is the ID of the sound.
 	 */
-	@:optional var onfaded:Int -> Void;
-    /**
-	 * Fires when the sound has been stopped.
-	 * The first parameter is the ID of the sound.
-	 */
-    @:optional var onstop:Int -> Void;
-    /**
-	 * Fires when the sound has been muted/unmuted.
-	 * The first parameter is the ID of the sound.
-	 */
-    @:optional var onmute:Int -> Void;
-    /**
-	 * Fires when the sound's volume has changed.
-	 * The first parameter is the ID of the sound.
-	 */
-    @:optional var onvolume:Int -> Void;
-    /**
-	 * Fires when the sound's playback rate has changed.
-	 * The first parameter is the ID of the sound.
-	 */
-    @:optional var onrate:Int -> Void;
-    /**
-	 * Fires when the sound has been seeked.
-	 * The first parameter is the ID of the sound.
-	 */
-    @:optional var onseek:Int -> Void;
+	@:optional var onfade:Int -> Void;
 	/**
 	 * The 3D spatial orientation: [x, y, z].
 	 */
