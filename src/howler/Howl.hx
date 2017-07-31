@@ -221,12 +221,12 @@ extern class Howl {
 	* This method can optionally take 0, 1 or 2 arguments.
 	*   pannerAttr() -> Returns the group's values.
 	*   pannerAttr(id) -> Returns the sound id's values.
-	*   pannerAttr(pannerAttributes) -> Set's the values of all sounds in this Howl group.
-	*   pannerAttr(pannerAttributes, id) -> Set's the values of passed sound id.
+	*   pannerAttr(o) -> Set's the values of all sounds in this Howl group.
+	*   pannerAttr(o, id) -> Set's the values of passed sound id.
 	* @return {Howl/Object} Returns self or current panner attributes.
 	*/
-	@:overload(function(pannerAttributes:PannerAttributes, id:Int):Dynamic {})
-	@:overload(function(pannerAttributes:PannerAttributes):Dynamic {})
+	@:overload(function(o:PannerAttributes, id:Int):Dynamic {})
+	@:overload(function(o:PannerAttributes):Dynamic {})
 	@:overload(function(id:Int):PannerAttributes {})
 	function pannerAttr():EitherType<Howl, PannerAttributes>;
 }
