@@ -11,10 +11,10 @@ extern class Howl {
 	function new(options:HowlOptions):Void;
 
 	/**
-     * Initialize a new Howl group object.
-     * @param  {Object} o Passed in properties for this group.
-     * @return {Howl}
-     */
+	 * Initialize a new Howl group object.
+	 * @param  {Object} o Passed in properties for this group.
+	 * @return {Howl}
+	 */
 	function init(o:Dynamic):Howl;
 
 	/**
@@ -89,13 +89,13 @@ extern class Howl {
 	function loop():Bool;
 
 	/**
-     * Get/set the playback rate of a sound. This method can optionally take 0, 1 or 2 arguments.
-     *   rate() -> Returns the first sound node's current playback rate.
-     *   rate(id) -> Returns the sound id's current playback rate.
-     *   rate(rate) -> Sets the playback rate of all sounds in this Howl group.
-     *   rate(rate, id) -> Sets the playback rate of passed sound id.
-     * @return {Howl/Float} Returns self or the current playback rate.
-     */
+	 * Get/set the playback rate of a sound. This method can optionally take 0, 1 or 2 arguments.
+	 *   rate() -> Returns the first sound node's current playback rate.
+	 *   rate(id) -> Returns the sound id's current playback rate.
+	 *   rate(rate) -> Sets the playback rate of all sounds in this Howl group.
+	 *   rate(rate, id) -> Sets the playback rate of passed sound id.
+	 * @return {Howl/Float} Returns self or the current playback rate.
+	 */
 	@:overload(function(rate:Float, id:Int):EitherType<Howl, Float> {})
 	@:overload(function(rate:Float):EitherType<Howl, Float> {})
 	@:overload(function(id:Int):EitherType<Howl, Float> {})
@@ -128,9 +128,9 @@ extern class Howl {
 	function duration():Float;
 
 	/**
-     * Returns the current loaded state of this Howl.
-     * @return {String} 'unloaded', 'loading', 'loaded'
-     */
+	 * Returns the current loaded state of this Howl.
+	 * @return {String} 'unloaded', 'loading', 'loaded'
+	 */
 	function state():String;
 
 	/**
@@ -168,9 +168,71 @@ extern class Howl {
 	 */
 	@:overload(function(event:String, fn:Int -> Void, ?id:Int):Howl {})
 	function once(event:String, fn:Void -> Void, ?id:Int):Howl;
+
+	/**
+	 * Get/set the pan of a sound. This method can optionally take 0, 1 or 2 arguments.
+	 *   pan() -> Returns the first sound node's current pan value.
+	 *   pan(id) -> Returns the sound id's current pan value.
+	 *   pan(rate) -> Sets the pan value of all sounds in this Howl group.
+	 *   pan(rate, id) -> Sets the pan value of passed sound id.
+	 * @return {Howl/Float} Returns self or the current pan value.
+	 */
+	@:overload(function(pan:Float, id:Int):Dynamic {})
+	@:overload(function(pan:Float):Dynamic {})
+	@:overload(function(id:Int):Float {})
+	function stereo():EitherType<Howl, Float>;
+
+	/**
+	* Get/set the 3D spatial position of the audio source for this sound or
+	* all in the group. The most common usage is to set the 'x' position for
+	* left/right panning. Setting any value higher than 1.0 will begin to
+	* decrease the volume of the sound as it moves further away. x, y and z values
+	* may be between -1000.0 and 1000.0.
+	* This method can optionally take 4, 3, 1 or 0 arguments.
+	 *   pos() -> Returns the first sound node's current position.
+	 *   pos(id) -> Returns the sound id's current position.
+	 *   pos(x, y, z) -> Sets the position of all sounds in this Howl group.
+	 *   pos(x, y, z, id) -> Sets the position of passed sound id.
+	* @return {Howl/Array}    Returns self or the current 3D spatial position: [x, y, z].
+	*/
+	@:overload(function(x:Float, y:Float, z:Float, id:Int):Dynamic {})
+	@:overload(function(x:Float, y:Float, z:Float):Dynamic {})
+	@:overload(function(id:Int):Array<Float> {})
+	function pos():EitherType<Howl, Array<Float>>;
+
+	/**
+	* Get/set the direction the audio source is pointing in the 3D cartesian coordinate
+	* space. Depending on how direction the sound is, based on the `cone` attributes,
+	* a sound pointing away from the listener can be quiet or silent.
+	* This method can optionally take 4, 3, 1 or 0 arguments.
+	 *   orientation() -> Returns the first sound node's current orientation.
+	 *   orientation(id) -> Returns the sound id's current orientation.
+	 *   orientation(x, y, z) -> Sets the orientation of all sounds in this Howl group.
+	 *   orientation(x, y, z, id) -> Sets the position of passed sound id.
+	* @return {Howl/Array}    Returns self or the current 3D spatial orientation: [x, y, z].
+	*/
+	@:overload(function(x:Float, y:Float, z:Float, id:Int):Dynamic {})
+	@:overload(function(x:Float, y:Float, z:Float):Dynamic {})
+	@:overload(function(id:Int):Array<Float> {})
+	function orientation():EitherType<Howl, Array<Float>>;
+
+	/**
+	* Get/set the panner node's attributes for a sound or group of sounds.
+	* This method can optionally take 0, 1 or 2 arguments.
+	*   pannerAttr() -> Returns the group's values.
+	*   pannerAttr(id) -> Returns the sound id's values.
+	*   pannerAttr(o) -> Set's the values of all sounds in this Howl group.
+	*   pannerAttr(o, id) -> Set's the values of passed sound id.
+	* @return {Howl/Object} Returns self or current panner attributes.
+	*/
+	@:overload(function(o:PannerAttributes, id:Int):Dynamic {})
+	@:overload(function(o:PannerAttributes):Dynamic {})
+	@:overload(function(id:Int):PannerAttributes {})
+	function pannerAttr():EitherType<Howl, PannerAttributes>;
 }
 
 typedef HowlOptions = {
+>PannerAttributes,
 	/**
 	 * Set to true to automatically start playback when sound is loaded.
 	 */
@@ -281,5 +343,68 @@ typedef HowlOptions = {
 	 * The first parameter is the ID of the sound.
 	 */
 	@:optional var onseek:Int -> Void;
+	/**
+	 * The 3D spatial orientation: [x, y, z].
+	 */
+	@:optional var orientation:Array<Float>;
+	/**
+	 * The 3D position: [x, y, z].
+	 */
+	@:optional var pos:Array<Float>;
+	/**
+	 * The 2D pan value of the sound: a value between -1.0 and 1.0.
+	 */
+	@:optional var stereo:Float;
+	/**
+	 * The panning attributes of a sound: See the PannerAttributes typedef for more information.
+	 */
+	@:optional var onstereo:Int -> Void;
+	/**
+	 * Fires when the sound pos is set.
+	 * The first parameter is the ID of the sound.
+	 */
+	@:optional var onpos:Int -> Void;
+	/**
+	 * Fires when the sound orientation is set.
+	 * The first parameter is the ID of the sound.
+	 */
+	@:optional var onorientation:Int -> Void;
+}
 
+typedef PannerAttributes =
+{
+	/**
+	 * (360 by default) There will be no volume reduction inside this angle.
+	 */
+	@:optional var coneInnerAngle:Float;
+	/**
+	 * (360 by default) (360 by default) The volume will be reduced to a constant value of `coneOuterGain` outside this angle.
+	 */
+	@:optional var coneOuterAngle:Float;
+	/**
+	 * (0 by default) The amount of volume reduction outside of `coneOuterAngle`.
+	 */
+	@:optional var coneOuterGain:Float;
+	/**
+	 * ('inverse' by default) Determines algorithm to use to reduce volume as audio moves away from listener.
+	 * Can be `linear`, `inverse` or `exponential`.
+	 */
+	@:optional var distanceModel:String;
+	/**
+	 * (10000 by default) Volume won't reduce between source/listener beyond this distance.
+	 */
+	@:optional var maxDistance:Float;
+	/**
+	 * ('HRTF' by default) Determines which spatialization algorithm is used to position audio.
+	 * Can be `HRTF` or `equalpower`.
+	 */
+	@:optional var panningModel:String;
+	/**
+	 * (1 by default) A reference distance for reducing volume as the source moves away from the listener.
+	 */
+	@:optional var refDistance:Float;
+	/**
+	 * (1 by default) How quickly the volume reduces as source moves from listener.
+	 */
+	@:optional var rolloffFacor:Float;
 }
