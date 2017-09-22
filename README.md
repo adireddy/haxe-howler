@@ -1,4 +1,4 @@
-[![Haxelib Version](https://img.shields.io/github/tag/adireddy/haxe-howler.svg?style=flat&label=haxelib)](http://lib.haxe.org/p/howlerjs) ![Build Status](https://travis-ci.org/adireddy/haxe-howler.svg?branch=master) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Haxelib Version](https://img.shields.io/github/tag/adireddy/haxe-howler.svg?style=flat&label=haxelib)](http://lib.haxe.org/p/howlerjs) ![Build Status](https://travis-ci.org/adireddy/haxe-howler.svg?branch=master) [![Support these externs on Patreon](http://www.waudjs.com/images/patreon_btn.png)](https://www.patreon.com/adireddy)
 =========
 
 ![haxe howler logo](https://raw.githubusercontent.com/adireddy/haxe-howler/master/logo.png)
